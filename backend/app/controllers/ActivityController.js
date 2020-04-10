@@ -11,7 +11,6 @@ const ActivityController = {
                 // Activity > user ==> tag, Activity > Tag
                 include: [{
                     association: 'users',
-                    // attributes: { exclude: ['password'] },
                     attributes: ['id', 'username'],
                     include: ['user_tags']
                 },
@@ -27,7 +26,6 @@ const ActivityController = {
                 ],
             });
             response.json(activities);
-            // console.log('test ==>', activities[0].dataValues.tags[0].dataValues.name);
         } catch (error) {
             console.error(error);
             response.status(500).json(error);
@@ -111,10 +109,14 @@ const ActivityController = {
                     newActivity.location = location;
                     newActivity.date = date;
                     newActivity.hour = hour;
+                    // L'utilisateur devient auteur de l'activité 
                     newActivity.user_id = userId;
                     
                     await newActivity.save();
+
+                    // Ajout d'un tag
                     await newActivity.addTag(tag);
+                    // L'auteur de l'activité est directement ajouté à cette dernière à sa création
                     await newActivity.addUser(user);
 
                     response.json(newActivity);
@@ -161,6 +163,8 @@ const ActivityController = {
                 }
                 // On sauvegarde la modification dans la base de données
                 await activity.save();
+
+                // Suppression de l'ancien tag et ajout du nouveau en cas de modification
                 await activity.removeTag(currentTag);
                 await activity.addTag(tagId);
 

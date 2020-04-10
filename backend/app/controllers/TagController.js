@@ -3,6 +3,7 @@ const { Tag, Activity, User } = require('../models/relations');
 
 // TagController
 const TagController = {
+    // route : GET /tag
     getAllTags: async (request, response) => {
         try {
             let tags = await Tag.findAll({
@@ -67,7 +68,6 @@ const TagController = {
             response.status(500).json(error);
         }
     },
-    
     // route : POST /activity/:id/tag
     associateTagToActivity: async (request, response) => {
         try {

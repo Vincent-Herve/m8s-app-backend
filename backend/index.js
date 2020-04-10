@@ -2,8 +2,10 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
+// BodyParser
 const bodyParser = require('body-parser');
 
+// Express Session
 const session = require('express-session');
 
 // Express
@@ -39,9 +41,6 @@ const router = require('./app/router');
 const cors = require('cors');
 
 const PORT = process.env.PORT || 3000;
-
-// Pour contrôler qui peut contacter l'API
-// app.use(cors('*'));
 
 // Utilisation du router
 app.use(router);

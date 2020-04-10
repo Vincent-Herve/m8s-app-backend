@@ -4,19 +4,18 @@ const emailValidator = require('email-validator');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
-const creds = require('../config');
 
 const transport = {
-    host: 'smtp.laposte.net', // Don’t forget to replace with the SMTP host of your provider
-    port: 465,
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
     auth: {
-    user: creds.USER,
-    pass: creds.PASS
+    user: process.env.USER,
+    pass: process.env.PASS
   }
 };
 
+// Création et vérification du transporteur afin de pouvoir acheminer les mails avec nodemailer
 const transporter = nodemailer.createTransport(transport);
-
 transporter.verify((error, success) => {
     if (error) {
       console.log(error);
@@ -41,6 +40,7 @@ const UserController = {
                 text: content
             }
 
+            // Envoie du mail
             transporter.sendMail(mail, (err, data) => {
                 if (err) {
                 response.json({
@@ -79,17 +79,12 @@ const UserController = {
                 return response.status(401).json("Cet email n'est pas valide");
             }
             
-            // On vérifie que les 2 champs de mot de passe correspondent
             if (request.body.password !== passwordConfirm) {
                return response.status(401).json("La confirmation de votre mot de passe a échoué");
             }
 
-            // Afin de stocker mon mot de passe en toute sécurité je l'encryp en le hashant avec le modul bcrypt, c'est la valeur retourné que je pourrais stocker en base de données
-            // ici maintenant on peut utiliser la function hash au lieu de hashSync et utiliser le mot clé await
-            
             const encryptedPassword = await bcrypt.hash(
                 password,
-                // Ce paramètre va haché 10 fois le mot de passe avec un salt différent à chaque fois
                 10
             );
             const [user, created] = await User.findOrCreate({
@@ -105,7 +100,6 @@ const UserController = {
                 }
             });
             if (!created) {
-                // rendu en cas d'erreur
                 return response.status(401).json(`Compte déjà existant`);
 
             } else {
