@@ -11,7 +11,7 @@ color: black;
 .contain {
   text-align: center;
   color: black;
-  }
+}
 
 h1 {
   font-family: ${theme.fonts.text2};
@@ -35,15 +35,11 @@ h1 {
   border: 2px solid black;
 }
 
-.react-icons {
-  color: green;
-}
-
 @media screen and (max-width: 450px) {
-.contain {
-  text-align: left;
-  color: black;
-}
+  .contain {
+    text-align: left;
+    color: black;
+  }
 }
 `;
 

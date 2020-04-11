@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from 'src/styles/theme';
 
 const ActivityStyled = styled.div`
    padding: 2.2rem 1em;
@@ -43,7 +42,6 @@ const ActivityStyled = styled.div`
   h3 {
     font-size: 1.5rem;
     margin-bottom: .5em;
-
   }
 
   .content-link {
@@ -116,8 +114,7 @@ const ActivityStyled = styled.div`
   width: 100%;
 }
 
-
 `;
 
 export default ActivityStyled;
-// #DE8400
+

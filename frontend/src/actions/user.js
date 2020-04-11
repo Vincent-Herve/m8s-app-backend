@@ -12,24 +12,29 @@ export const UPDATE_USER = 'UPDATE_USER';
 export const DELETE_USER_ACTIVITY = 'DELETE_USER_ACTIVITY';
 export const MESSAGE_ERROR = 'MESSAGE_ERROR';
 
+// controlled field in component ==> Signup, Signin, EditProfil
 export const changeValue = (value, name) => ({
   type: CHANGE_VALUE,
   name,
   value,
 });
 
+// redirection used in case ajaxMiddleware ==> SIGNIN, SIGNUP, SIGNOUT, UNSUBSCRIBE, EDIT_PROFIL
 export const redirection = () => ({
   type: REDIRECTION,
 });
 
+// isLoading used in case ajaxMiddleware ==> SIGNIN, SIGNUP, EDIT_PROFIL, SEARCH_ACTIVITY
 export const isLoading = () => ({
   type: IS_LOADING,
 });
 
+// action ajaxMiddleware signin
 export const signin = () => ({
   type: SIGNIN,
 });
 
+// action reducer/user saveUser
 export const saveUser = (userProfil) => ({
   type: SAVE_USER,
   id: userProfil.id,
@@ -37,38 +42,46 @@ export const saveUser = (userProfil) => ({
   firstname: userProfil.firstname,
   lastname: userProfil.lastname,
   email: userProfil.email,
-  activities: userProfil.activities,
 });
 
+// action ajaxMiddleware checkIsLogged
 export const checkIsLogged = () => ({
   type: CHECK_IS_LOGGED,
 });
 
+// action ajaxMiddleware signup
 export const signup = () => ({
   type: SIGNUP,
 });
 
+// action ajaxMiddleware and reducer/user signout
 export const signout = () => ({
   type: SIGNOUT,
 });
 
+// action ajaxMiddlewate unsubscribe
 export const unsubscribe = () => ({
   type: UNSUBSCRIBE,
 });
 
+// action ajaxMiddleware editProfil
 export const editProfil = () => ({
   type: EDIT_PROFIL,
 });
 
+// action reducer/user updateUser, remount app for refresh reducer/activities/list with action fetchActivities
 export const updateUser = () => ({
   type: UPDATE_USER,
 });
 
+
+// action reducer/user deleteUserActivity, remount app for refresh reducer/activities/list with action fetchActivities
 export const deleteUserActivity = (activities) => ({
   type: DELETE_USER_ACTIVITY,
   activities,
 });
 
+// action reducer/user messageError, used in case ajaxMiddleware SIGNUP, SIGNIN
 export const messageError = (message) => ({
   type: MESSAGE_ERROR,
   message,

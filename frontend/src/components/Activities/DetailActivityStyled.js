@@ -5,7 +5,6 @@ const DetailActivityStyled = styled.div`
    background-color: #f4cba8;
    position: relative;
    min-height: 100vh;
-   
 
    .content {
     padding-top: 10rem;

@@ -31,21 +31,17 @@ const Activity = (
     isLogged,
     registerActivity,
     leftActivity,
-    fetchActivities,
     tagList,
     // eslint-disable-next-line comma-dangle
   }
 ) => {
 
+  // state message register or left activity
   const [message, setMessage] = useState('');
 
   const memberActivity = users.filter((user) => user.id === userProfilId);
   const memberActivityReserved = (memberActivity.length && isLogged ? true : false);
   const memberActivityNotReserved = (isLogged && (memberActivityReserved === false) ? true : false);
-
-  function refreshPage() {
-    window.location.reload(false);
-  }
 
   const handleRegisterClick = () => {
     if (users.length >= free_place) {
@@ -146,18 +142,7 @@ Activity.propTypes = {
   hour: PropTypes.node.isRequired,
   user_id: PropTypes.number.isRequired,
   userProfilId: PropTypes.node.isRequired,
-  // handleRegister: PropTypes.func.isRequired,
+  tagList: PropTypes.array.isRequired,
 };
 
 export default Activity;
-
-/*{
-            pathname: getUrlByActivityTitle(title),
-            state: {
-              cardHeading: 'This is a heading',
-              cardDesc: 'Description'
-                  }
-    }
-<button type="button" onClick={handleEditClick}>Modifier l'activité</button>
-
-    */ // <span className="underline"></span>

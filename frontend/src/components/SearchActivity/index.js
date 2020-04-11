@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import ClipLoader from 'react-spinners/ClipLoader';
 import Activity from './Activity';
@@ -20,6 +20,13 @@ const SearchActivity = ({
   registerActivity,
   leftActivity,
 }) => {
+
+  const [message, setMessage] = useState(`${activities.length} activité(s) disponible(s)`);
+
+  useEffect(() => {
+    setMessage(`${activities.length} activité(s) disponible(s)`);
+  }, [activities]);
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleSearchActivity();
@@ -67,7 +74,7 @@ const SearchActivity = ({
         />
         {viewActivitiesOn && (
           <div className="contain">
-            <h1>Voici les activités disponibles !</h1>
+            <h1>{message}</h1>
             <div className="cards">
               {activities.map((activity) => <Activity key={activity.id} {...activity} userProfilId={userProfilId} leftActivity={leftActivity} isLogged={isLogged} registerActivity={registerActivity} />)}
             </div>

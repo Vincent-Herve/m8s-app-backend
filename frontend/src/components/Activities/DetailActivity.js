@@ -12,17 +12,17 @@ const IconEdit = () => (
   <IoMdCreate size="1.5em" color="blue" />
 );
 
-const DetailActivity = ({ activity, isLogged, userProfilId, fetchActivities, registerActivity, leftActivity, tagList }) => {
-
+const DetailActivity = (
+  {
+    activity, isLogged, userProfilId, registerActivity, leftActivity, tagList 
+  },
+) => {
   const [message, setMessage] = useState('');
 
   const memberActivity = activity.users.filter((user) => user.id === userProfilId);
   const memberActivityReserved = (memberActivity.length && isLogged ? true : false);
   const memberActivityNotReserved = (isLogged && (memberActivityReserved === false) ? true : false);
 
-  function refreshPage() {
-    window.location.reload(false);
-  }
 
   const handleRegisterClick = () => {
     if (activity.users.length >= activity.free_place) {
@@ -74,7 +74,8 @@ const DetailActivity = ({ activity, isLogged, userProfilId, fetchActivities, reg
         {authorActivity && (
           <>
             <Icon />
-            <Link className="link-edit"
+            <Link
+              className="link-edit"
               to={
                 {
                   pathname: '/editactivity',
@@ -119,7 +120,7 @@ DetailActivity.propTypes = {
   registerActivity: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
   userProfilId: PropTypes.node.isRequired,
-  // handleRegister: PropTypes.func.isRequired,
+  tagList: PropTypes.node.isRequired,
 };
 
 // == Export

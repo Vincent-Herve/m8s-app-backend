@@ -36,8 +36,6 @@ const App = (
     checkIsLogged,
     fetchActivities,
     isLoading,
-    resultList,
-    list,
     reload,
   },
 ) => {
@@ -52,8 +50,6 @@ const App = (
   // Vérifier si session toujours active coté back
   useEffect(checkIsLogged, []);
   useEffect(fetchActivities, [redirectionCreate, reload]);
-  useEffect(() => {
-  }, [resultList]);
 
   return (
     <AppStyled>
@@ -130,6 +126,9 @@ App.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   checkIsLogged: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  redirectionCreate: PropTypes.bool.isRequired,
+  setRedirectionCreate: PropTypes.func.isRequired,
+  reload: PropTypes.bool.isRequired,
 };
 
 // == Export

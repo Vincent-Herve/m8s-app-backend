@@ -20,7 +20,6 @@ export const initialState = {
     firstname: '',
     lastname: '',
     email: '',
-    activities: '',
   },
   username: '',
   firstname: '',
@@ -48,7 +47,6 @@ const user = (state = initialState, action = {}) => {
           firstname: action.firstname,
           lastname: action.lastname,
           email: action.email,
-          activities: action.activities,
         },
       };
     case SIGNOUT:
