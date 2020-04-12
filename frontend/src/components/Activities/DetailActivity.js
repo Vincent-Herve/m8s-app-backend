@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -14,7 +15,7 @@ const IconEdit = () => (
 
 const DetailActivity = (
   {
-    activity, isLogged, userProfilId, registerActivity, leftActivity, tagList 
+    activity, isLogged, userProfilId, registerActivity, leftActivity, tagList,
   },
 ) => {
   const [message, setMessage] = useState('');

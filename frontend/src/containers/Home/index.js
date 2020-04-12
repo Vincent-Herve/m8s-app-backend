@@ -6,7 +6,6 @@ import Home from 'src/components/Home';
 const mapStateToProps = (state, ownProps) => ({
   isLogged: state.user.isLogged,
   userProfil: state.user.userProfil,
-  activities: state.activities.list,
 });
 
 const mapDispatchToProps = null;

@@ -1,4 +1,6 @@
-import { SAVE_ACTIVITIES, CHANGE_VALUE, SAVE_RESULT, REDIRECTION_CREATE } from 'src/actions/activities';
+import {
+  SAVE_ACTIVITIES, CHANGE_VALUE, SAVE_RESULT, REDIRECTION_CREATE,
+} from 'src/actions/activities';
 
 export const initialState = {
   list: [],

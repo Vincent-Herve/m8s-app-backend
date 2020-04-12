@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => ({
   location: state.activities.location,
   date: state.activities.date,
   hour: state.activities.hour,
-  isLoading: state.user.isLoading
+  isLoading: state.user.isLoading,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -30,6 +30,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(changeTag(value));
   },
 });
+
 // Container
 export default connect(
   mapStateToProps,

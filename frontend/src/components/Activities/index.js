@@ -10,7 +10,7 @@ const Icon = () => (
 );
 
 const Activities = ({
-  activities, userProfilId, isLogged, registerActivity, leftActivity, fetchActivities, tags
+  activities, userProfilId, isLogged, registerActivity, leftActivity, fetchActivities, tags,
 }) => (
   <ActivitiesStyled>
     <h1>Voici les activités disponibles :</h1>

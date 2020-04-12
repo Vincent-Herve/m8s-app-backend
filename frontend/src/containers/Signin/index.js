@@ -10,7 +10,6 @@ import { signin, changeValue } from 'src/actions/user';
 const mapStateToProps = (state, ownProps) => ({
   email: state.user.email,
   password: state.user.password,
-  isLogged: state.user.isLogged,
   isLoading: state.user.isLoading,
   messageError: state.user.messageError,
 });

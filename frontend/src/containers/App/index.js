@@ -10,11 +10,8 @@ import { redirection, checkIsLogged } from 'src/actions/user';
 const mapStateToProps = (state, ownProps) => ({
   redirection: state.user.redirection,
   redirectionCreate: state.activities.redirectionCreate,
-  test: state.tag.list,
   isLogged: state.user.isLogged,
   isLoading: state.activities.isLoading,
-  resultList: state.activities.resultList,
-  list: state.activities.list,
   reload: state.user.reload,
 });
 

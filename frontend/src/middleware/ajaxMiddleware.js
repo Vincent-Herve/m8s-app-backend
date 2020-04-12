@@ -15,7 +15,18 @@ import {
   deleteUserActivity,
   messageError,
 } from 'src/actions/user';
-import { FETCH_ACTIVITIES, saveActivities, CREATE_ACTIVITY, REGISTER_ACTIVITY, LEFT_ACTIVITY, SEARCH_ACTIVITY, redirectionCreate, saveResult } from '../actions/activities';
+
+import {
+  FETCH_ACTIVITIES,
+  saveActivities,
+  CREATE_ACTIVITY,
+  REGISTER_ACTIVITY,
+  LEFT_ACTIVITY,
+  SEARCH_ACTIVITY,
+  redirectionCreate,
+  saveResult,
+} from '../actions/activities';
+
 import { saveTags } from '../actions/tag';
 
 
@@ -67,7 +78,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       }, {
         withCredentials: true,
       })
-        .then((response) => {
+        .then(() => {
           store.dispatch(isLoading());
           setTimeout(() => {
             store.dispatch(isLoading());
@@ -88,7 +99,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       }, {
         withCredentials: true,
       })
-        .then((response) => {
+        .then(() => {
           store.dispatch(redirection());
         })
         .catch((error) => {
@@ -137,12 +148,20 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     }
     case EDIT_PROFIL: {
       const state = store.getState();
-      const { email, password, userProfil, username, firstname, lastname } = state.user;
+      const {
+        email, password, userProfil, username, firstname, lastname,
+      } = state.user;
       const newEmail = (email !== '' ? email : userProfil.email);
       const newUsername = (username !== '' ? username : userProfil.username);
       const newFirstname = (firstname !== '' ? firstname : userProfil.firstname);
       const newLastname = (lastname !== '' ? lastname : userProfil.lastname);
-      const newUserProfil = { ...userProfil, email: newEmail, username: newUsername, firstname: newFirstname, lastname: newLastname };
+      const newUserProfil = {
+        ...userProfil,
+        email: newEmail,
+        username: newUsername,
+        firstname: newFirstname,
+        lastname: newLastname,
+      };
       axios.patch(`http://localhost:3000/profil/${userProfil.id}`, {
         email,
         password,
@@ -152,7 +171,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       }, {
         withCredentials: true,
       })
-        .then((response) => {
+        .then(() => {
           store.dispatch(isLoading());
           setTimeout(() => {
             store.dispatch(isLoading());
@@ -166,7 +185,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       next(action);
       break;
     }
-
     case FETCH_ACTIVITIES: {
       axios.all([
         axios.get('http://localhost:3000/activity'),
@@ -197,7 +215,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         hour,
       } = state.activities;
       const { tagId } = state.tag;
-
       axios.post('http://localhost:3000/activity', {
         title,
         description,
@@ -210,7 +227,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       }, {
         withCredentials: true,
       })
-        .then((response) => {
+        .then(() => {
           setTimeout(() => {
             store.dispatch(redirectionCreate());
           }, 1500);
@@ -231,7 +248,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       }, {
         withCredentials: true,
       })
-        .then((response) => {
+        .then(() => {
           store.dispatch(updateUser());
         })
         .catch((error) => {
@@ -247,7 +264,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       }, {
         withCredentials: true,
       })
-        .then((response) => {
+        .then(() => {
           store.dispatch(deleteUserActivity());
         })
         .catch((error) => {

@@ -9,14 +9,12 @@ import { getActivityBySlug } from 'src/selectors/Activities';
 import { registerActivity, leftActivity, fetchActivities } from 'src/actions/activities';
 
 /* === State (données) === */
-const mapStateToProps = (state, ownProps) => {
-  return ({
-    activity: getActivityBySlug(state.activities.list, ownProps.match.params.slug),
-    isLogged: state.user.isLogged,
-    userProfilId: state.user.userProfil.id,
-    tagList: state.tag.list,
-  });
-};
+const mapStateToProps = (state, ownProps) => ({
+  activity: getActivityBySlug(state.activities.list, ownProps.match.params.slug),
+  isLogged: state.user.isLogged,
+  userProfilId: state.user.userProfil.id,
+  tagList: state.tag.list,
+});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   registerActivity: (id, user) => {
@@ -24,9 +22,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   leftActivity: (id, user) => {
     dispatch(leftActivity(id, user));
-  },
-  fetchActivities: () => {
-    dispatch(fetchActivities());
   },
 });
 

@@ -12,8 +12,6 @@ const mapStateToProps = (state, ownProps) => ({
   tagId: state.tag.list,
   location: state.activities.location,
   activities: state.activities.resultList,
-  userProfilId: state.user.userProfil.id,
-  isLogged: state.user.isLogged,
   isLoading: state.user.isLoading,
 });
 
@@ -27,13 +25,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   changeTag: (value) => {
     dispatch(changeTag(value));
   },
-  registerActivity: (id, user) => {
-    dispatch(registerActivity(id, user));
-  },
-  leftActivity: (id, user) => {
-    dispatch(leftActivity(id, user));
-  },
 });
+
 // Container
 export default connect(
   mapStateToProps,

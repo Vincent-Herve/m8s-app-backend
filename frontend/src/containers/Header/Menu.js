@@ -16,6 +16,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(signout());
   },
 });
+
 // Container
 export default connect(
   mapStateToProps,
