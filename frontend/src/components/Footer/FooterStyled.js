@@ -14,7 +14,6 @@ a {
   font-size: 1.3em;
   font-family: ${theme.fonts.text2};
   padding: 1.5em;
-  
 }
 
 @media screen and (max-width: 400px) {
@@ -28,14 +27,15 @@ a {
     font-size: 0.9em;
     font-family: ${theme.fonts.text2};
     padding: .7em;
-    
   }
 }
 
-@media screen and (max-width: 720px){
-  a{
+@media screen and (max-width: 720px) {
+
+  a {
     font-size:1.1em;
   }
 }
 `;
+
 export default FooterStyled;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import ClipLoader from 'react-spinners/ClipLoader';
 import Activity from './Activity';
 
@@ -15,12 +15,7 @@ const SearchActivity = ({
   changeField,
   changeTag,
   activities,
-  userProfilId,
-  isLogged,
-  registerActivity,
-  leftActivity,
 }) => {
-
   const [message, setMessage] = useState(`${activities.length} activité(s) disponible(s)`);
 
   useEffect(() => {
@@ -76,7 +71,7 @@ const SearchActivity = ({
           <div className="contain">
             <h1>{message}</h1>
             <div className="cards">
-              {activities.map((activity) => <Activity key={activity.id} {...activity} userProfilId={userProfilId} leftActivity={leftActivity} isLogged={isLogged} registerActivity={registerActivity} />)}
+              {activities.map((activity) => <Activity key={activity.id} {...activity} />)}
             </div>
           </div>
         )}
@@ -85,17 +80,14 @@ const SearchActivity = ({
   );
 };
 
-/*
 SearchActivity.propTypes = {
   handleSearchActivity: PropTypes.func.isRequired,
   location: PropTypes.string.isRequired,
-  tagId: PropTypes.number.isRequired,
+  tagId: PropTypes.array.isRequired,
   changeField: PropTypes.func.isRequired,
   changeTag: PropTypes.func.isRequired,
- userProfilid: PropTypes.number.isRequired,
- isLogged: PropTypes.bool.isRequired,
- registrerActivity: PropTypes.func.isRequired,
- leftActivity: PropTypes.func.isRequired,
-};*/
+  activities: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
 
 export default SearchActivity;

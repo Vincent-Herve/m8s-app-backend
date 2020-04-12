@@ -1,17 +1,21 @@
 import styled from 'styled-components';
 
 const ActivityStyled = styled.div`
-  padding: 2.2rem 1em;
-  margin: 2rem;
-  border-radius: 5px;
-  width: 28%;
-  box-shadow: 1px 0px 7px -2px #000000;
-  background-color: #f4cba8;
-  transition: .3s ease-in-out;
-  position: relative;
+   padding: 2.2rem 1em;
+   margin: 2rem;
+   border-radius: 5px;
+   width: 28%;
+   box-shadow: 1px 0px 7px -2px #000000;
+   background-color: #f4cba8;
+   transition: .3s ease-in-out;
+   position: relative;
 
    &:hover {
     transform: scale(1.1);
+   }
+
+   .content-closed {
+     opacity: 0.4;
    }
 
    .content-title {
@@ -38,7 +42,6 @@ const ActivityStyled = styled.div`
   h3 {
     font-size: 1.5rem;
     margin-bottom: .5em;
-
   }
 
   .content-link {
@@ -72,6 +75,25 @@ const ActivityStyled = styled.div`
     }
   }
 
+  .delete {
+    text-decoration: none;
+    border: solid 1.4px #DE8400;
+    padding: .8em;
+    color: white;
+    background-color: #DE8400;
+    font-weight: bold;
+    transition: .3s ease-in-out;
+
+    &:hover {
+      text-decoration: none;
+      border: solid 1.4px #DE8400;
+      padding: .8em;
+      color: #DE8400;
+      background-color: #f4cba8;
+      font-weight: bold;
+  }
+  }
+
   .author-icon {
     position: absolute;
     top: 2px;
@@ -91,6 +113,8 @@ const ActivityStyled = styled.div`
 @media screen and (max-width: 450px) {
   width: 100%;
 }
+
 `;
 
 export default ActivityStyled;
+

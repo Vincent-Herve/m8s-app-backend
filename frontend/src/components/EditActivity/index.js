@@ -1,3 +1,7 @@
+/* eslint-disable no-alert */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable camelcase */
+/* eslint-disable prefer-destructuring */
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -8,21 +12,20 @@ import EditActivityStyled from './EditActivityStyled';
 
 
 const EditActivity = (props) => {
-
   const [redirect, setRedirect] = useState(false);
-
   function refreshPage() {
     window.location.reload(false);
   }
 
   const handleDeleteClick = () => {
+    // eslint-disable-next-line no-restricted-globals
     const confirmation = confirm('êtes-vous sûr de vouloir supprimer votre activité ?');
     if (confirmation) {
       axios.delete(`http://localhost:3000/activity/${props.location.state.id}`, {},
         {
           withCredentials: true,
         })
-        .then((response) => {
+        .then(() => {
         })
         .catch((error) => {
           console.error(error);
@@ -30,24 +33,27 @@ const EditActivity = (props) => {
     }
   };
 
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
     const data = new FormData(evt.target);
     const title = data.get('title');
     const description = data.get('description');
+    // eslint-disable-next-line camelcase
     const free_place = data.get('free_place');
     const location = data.get('location');
     const date = data.get('date');
     const hour = data.get('hour');
     const tagId = data.get('tagId');
     const currentTag = props.location.state.currentTag;
+    // eslint-disable-next-line camelcase
     if (title === '' || description === '' || free_place === '' || location === '' || date === '' || hour === '' || tagId === '') {
       alert('Veuillez remplir tout les champs');
-    } else if (props.location.state.current_place > free_place) {
+    }
+    else if (props.location.state.current_place > free_place) {
       alert('Il y a plus d\'utilisateur inscrit que de place disponible')
-    } else {
+    }
+    else {
       axios.patch(`http://localhost:3000/activity/${props.location.state.id}`, {
         title,
         description,
@@ -60,7 +66,7 @@ const EditActivity = (props) => {
       }, {
         withCredentials: true,
       })
-        .then((response) => {
+        .then(() => {
           setRedirect(true);
           refreshPage();
         })
@@ -69,7 +75,6 @@ const EditActivity = (props) => {
         });
     }
   };
-
   return (
     <EditActivityStyled>
       <div className="contain">
@@ -96,14 +101,17 @@ const EditActivity = (props) => {
             ))}
           </select>
           <div>
-           <button type="submit">Valider</button> 
+            <button type="submit">Valider</button>
           </div>
-          
         </form>
         <button type="button" onClick={handleDeleteClick}>Supprimer une activité</button>
       </div>
     </EditActivityStyled>
   );
+};
+
+EditActivity.propTypes = {
+  location: PropTypes.object.isRequired,
 };
 
 export default EditActivity;

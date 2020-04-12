@@ -7,6 +7,7 @@ import ActivityStyled from './ActivityStyled';
 
 const Activity = (
   {
+    id,
     title,
     tags,
     users,
@@ -47,6 +48,7 @@ const Activity = (
 );
 
 Activity.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   tags: PropTypes.array.isRequired,
   users: PropTypes.array.isRequired,

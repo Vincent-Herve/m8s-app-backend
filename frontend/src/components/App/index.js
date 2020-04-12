@@ -1,5 +1,6 @@
 // == Import npm
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Home from 'src/containers/Home';
@@ -17,12 +18,13 @@ import CardsActivity from 'src/containers/CardsActivity';
 import Presentation from 'src/components/Home/Presentation';
 import Contact from 'src/components/Contact';
 import Notice from 'src/components/Mentions-légales';
-import PropTypes from 'prop-types';
+
 import {
   Route,
   Switch,
   Redirect,
 } from 'react-router-dom';
+
 import AppStyled from './AppStyled';
 
 
@@ -39,16 +41,19 @@ const App = (
     reload,
   },
 ) => {
+
+  // once the redirection is done, we pass the boolean to false
   if (redirection) {
     setRedirection();
   }
-
   if (redirectionCreate) {
     setRedirectionCreate();
   }
 
-  // Vérifier si session toujours active coté back
+  // Check if back side session is still active
   useEffect(checkIsLogged, []);
+
+  // We consume API to get all activities, initial render and set redirectionCreate, reload
   useEffect(fetchActivities, [redirectionCreate, reload]);
 
   return (

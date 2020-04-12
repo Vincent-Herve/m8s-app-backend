@@ -18,7 +18,6 @@ input:focus{
   transition-duration: 0.5s;
   border-radius: 9px;
 }
-
 `;
 
 export default FieldStyled;

@@ -7,42 +7,42 @@ const EditProfilStyled = styled.main`
   text-align: center;
   min-height: 100vh;
 
-h1 {
-  font-family: ${theme.fonts.text2};
-}
+  h1 {
+    font-family: ${theme.fonts.text2};
+  }
 
-input {
-  width: 40%;
-  border: 2px solid white;
-  margin: 1em;
-  border-bottom: 2px solid #f4cba8;
-  padding: 0.5em;
-  background: transparent;
-}
+  input {
+    width: 40%;
+    border: 2px solid white;
+    margin: 1em;
+    border-bottom: 2px solid #f4cba8;
+    padding: 0.5em;
+    background: transparent;
+  }
 
-input:focus{
-  border: 2px solid #DE8400;
-  transition-duration: 0.5s;
-  border-radius: 9px;
-}
+  input:focus{
+    border: 2px solid #DE8400;
+    transition-duration: 0.5s;
+    border-radius: 9px;
+  }
 
-button {
-    font-size: 30px;
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 2rem 0 5rem 0;
-	  border-radius: 25px;
-    text-decoration: none;
-    color: #FFF;
-    background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
-    background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
-    transition: .6s;
+  button {
+      font-size: 30px;
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 2rem 0 5rem 0;
+      border-radius: 25px;
+      text-decoration: none;
+      color: #FFF;
+      background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+      background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+      transition: .6s;
 
-    &:hover {
-      background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
-      background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
-    }
-}
+      &:hover {
+        background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+        background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+      }
+  }
 `;
 
 export default EditProfilStyled;

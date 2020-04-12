@@ -66,8 +66,7 @@ Signin.propTypes = {
   changeField: PropTypes.func.isRequired,
   handleSignin: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  messageError: PropTypes.string.isRequired,
 };
 
 export default Signin;
-
-

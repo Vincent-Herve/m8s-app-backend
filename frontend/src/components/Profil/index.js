@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-restricted-syntax */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -15,7 +16,6 @@ const Profil = ({ userProfil, handleSignout, activities }) => {
   };
 
   const filteredActivities = [];
-  // const filteredActivities = activities.filter((activity) => )
 
   for (let activityUsers of activities) {
     for (let activityUser of activityUsers.users) {
@@ -29,6 +29,7 @@ const Profil = ({ userProfil, handleSignout, activities }) => {
   const generateClickHandler = (newTab) => () => {
     setTab(newTab);
   };
+
   return (
     <ProfilStyled>
       <h1>Mon profil</h1>
@@ -84,6 +85,7 @@ const Profil = ({ userProfil, handleSignout, activities }) => {
 Profil.propTypes = {
   userProfil: PropTypes.object.isRequired,
   handleSignout: PropTypes.func.isRequired,
+  activities: PropTypes.array.isRequired,
 };
 
 export default Profil;

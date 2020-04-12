@@ -107,6 +107,8 @@ Signup.propTypes = {
   changeField: PropTypes.func.isRequired,
   handleSignup: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  messageError: PropTypes.string.isRequired,
+  setMessageError: PropTypes.func.isRequired,
 };
 
 export default Signup;

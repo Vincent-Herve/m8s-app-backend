@@ -2,16 +2,16 @@ import styled from 'styled-components';
 import theme from 'src/styles/theme';
 
 const SignupStyled = styled.section`
-padding-top: 10em;
-min-height: 100vh;
-text-align: center;
+  padding-top: 10em;
+  min-height: 100vh;
+  text-align: center;
 
   button {
     font-size: 30px;
     display: inline-block;
     padding: 10px 20px;
     margin: 2rem 0 5rem 0;
-	  border-radius: 25px;
+    border-radius: 25px;
     text-decoration: none;
     color: #FFF;
     background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
@@ -22,7 +22,7 @@ text-align: center;
       background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
       background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
     }
-}
+  }
 
 .contain-links {
   padding-bottom: 4em;
@@ -46,7 +46,7 @@ h1 {
 
   border-radius:0px;
 
-  h1{
+  h1 {
     font-size:2.4em;
   }
 
@@ -55,7 +55,7 @@ h1 {
     display: inline-block;
     padding: 8px 12px;
     margin: 2rem 0 5rem 0;
-	  border-radius: 25px;
+    border-radius: 25px;
     text-decoration: none;
     color: #FFF;
     background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
@@ -79,7 +79,7 @@ h1 {
 
   border-radius:0px;
 
-  h1{
+  h1 {
     font-size:1.9em;
   }
 
@@ -88,18 +88,17 @@ h1 {
     display: inline-block;
     padding: 8px 14px;
     margin: 2rem 0 5rem 0;
-	  border-radius: 25px;
+    border-radius: 25px;
     text-decoration: none;
     color: #FFF;
     background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
     background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
     transition: .6s;
-}
+  }
 
-.login-form-button:hover {
+  .login-form-button:hover {
     background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
     background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
-
 }
 `;
 

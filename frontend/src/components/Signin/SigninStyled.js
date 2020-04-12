@@ -11,7 +11,7 @@ const SigninStyled = styled.main`
     display: inline-block;
     padding: 10px 20px;
     margin: 2rem 0 5rem 0;
-	  border-radius: 25px;
+    border-radius: 25px;
     text-decoration: none;
     color: #FFF;
     background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
@@ -22,27 +22,27 @@ const SigninStyled = styled.main`
       background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
       background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
     }
-}
+  }
 
   h1 {
     font-family: ${theme.fonts.text2};
   }
 
-.links {
-    text-decoration: none;
-    font-size: 1.5rem;
-    color: black;
-}
+  .links {
+      text-decoration: none;
+      font-size: 1.5rem;
+      color: black;
+  }
 
-.error {
-  color: red;
-}
+  .error {
+    color: red;
+  }
 
 @media screen and (max-width: 720px) {
 
   border-radius:0px;
 
-  h1{
+  h1 {
     font-size:2.4em;
     font-family: ${theme.fonts.text2};
   }
@@ -52,13 +52,13 @@ const SigninStyled = styled.main`
     display: inline-block;
     padding: 8px 12px;
     margin: 2rem 0 5rem 0;
-	  border-radius: 25px;
+    border-radius: 25px;
     text-decoration: none;
     color: #FFF;
     background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
     background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
     transition: .6s;
-}
+  }
 
 .login-form-button:hover {
     background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
@@ -72,13 +72,11 @@ const SigninStyled = styled.main`
     color: black;
 }
 
-
-
 @media screen and (max-width: 400px) {
 
   border-radius:0px;
 
-  h1{
+  h1 {
     font-size:1.9em;
   }
 
@@ -87,18 +85,17 @@ const SigninStyled = styled.main`
     display: inline-block;
     padding: 8px 14px;
     margin: 2rem 0 5rem 0;
-	  border-radius: 25px;
+    border-radius: 25px;
     text-decoration: none;
     color: #FFF;
     background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
     background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
     transition: .6s;
-}
+  }
 
 .login-form-button:hover {
-    background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
-    background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
-
+  background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+  background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
 }
 `;
 

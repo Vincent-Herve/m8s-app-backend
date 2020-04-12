@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-// import theme from 'src/styles/theme';
-
 
 const ContactStyled = styled.div`
     min-height: 100vh;
@@ -14,7 +12,6 @@ const ContactStyled = styled.div`
       background-color: #F0F0F0;
       border-radius: 5%;
       padding: 1.5rem;
-      
     }
 
     h1 {
@@ -71,90 +68,88 @@ const ContactStyled = styled.div`
       transition-duration: 0.5s;
       border-radius: 9px;
   }
+
+  .text {
+    width: 15rem;
+    height: 7rem;
+  }
+  .logo {
+    filter: invert(70%);
   }
 
-    .text {
-      width: 15rem;
-      height: 7rem;
-    }
-    .logo {
-      filter: invert(70%);
-    }
+  @media screen and (max-width: 450px) {
 
-    @media screen and (max-width: 450px) {
+    .main {
+    background-color: #F0F0F0;
+    border-radius: 5%;
+    padding: 1.5rem;
+    margin: 8rem 1rem 2rem 1rem;
 
-      .main {
-      background-color: #F0F0F0;
-      border-radius: 5%;
-      padding: 1.5rem;
-      margin: 8rem 1rem 2rem 1rem;
-
-    }
-
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 3rem;
-    }
-
-    p {
-      font-size: 13px;
-      margin: 3px;
-    }
-
-    input {
-      width: 60%;
-      border: 2px solid;
-      margin: 1em;
-      padding: 0.5em;
-      background: transparent;
-  }
-    input:focus{
-      border: 2px solid #DE8400;
-      transition-duration: 0.5s;
-      border-radius: 9px;
   }
 
-  button {
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+  }
+
+  p {
+    font-size: 13px;
+    margin: 3px;
+  }
+
+  input {
+    width: 60%;
+    border: 2px solid;
+    margin: 1em;
+    padding: 0.5em;
+    background: transparent;
+}
+  input:focus{
+    border: 2px solid #DE8400;
+    transition-duration: 0.5s;
+    border-radius: 9px;
+}
+
+button {
+  text-decoration: none;
+  border: solid 1.4px #DE8400;
+  padding: .4em;
+  color: white;
+  background-color: #DE8400;
+  font-weight: bold;
+  transition: .3s ease-in-out;
+
+  &:hover {
     text-decoration: none;
     border: solid 1.4px #DE8400;
     padding: .4em;
-    color: white;
-    background-color: #DE8400;
+    color: #DE8400;
+    background-color: #f4cba8;
     font-weight: bold;
-    transition: .3s ease-in-out;
+}
+}
 
-    &:hover {
-      text-decoration: none;
-      border: solid 1.4px #DE8400;
-      padding: .4em;
-      color: #DE8400;
-      background-color: #f4cba8;
-      font-weight: bold;
-  }
-  }
+textarea {
+  width: 60%;
+    border: 2px solid;
+    margin: 1em;
+    padding: 0.5em;
+    background: transparent;
+}
+  textarea:focus{
+    border: 2px solid #DE8400;
+    transition-duration: 0.5s;
+    border-radius: 9px;
+}
+}
 
-  textarea {
-    width: 60%;
-      border: 2px solid;
-      margin: 1em;
-      padding: 0.5em;
-      background: transparent;
+  .text {
+    width: 15rem;
+    height: 7rem;
   }
-    textarea:focus{
-      border: 2px solid #DE8400;
-      transition-duration: 0.5s;
-      border-radius: 9px;
+  .logo {
+    filter: invert(70%);
   }
-  }
-
-    .text {
-      width: 15rem;
-      height: 7rem;
-    }
-    .logo {
-      filter: invert(70%);
-    }
-    }
 `;
 
 export default ContactStyled;

@@ -81,8 +81,8 @@ const CreateActivity = ({
           </select>
           <div>
             <button
-            type="submit"
-            className="login-form-button"
+              type="submit"
+              className="login-form-button"
             >
               Valider
             </button>

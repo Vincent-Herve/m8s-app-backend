@@ -8,42 +8,39 @@ const HeaderStyled = styled.header`
       height: auto;
       padding: .5em;
       margin-right: .4em;
-    }
-
+  }
 
 .nav {
       height: 10vh;
       display: flex;
       justify-content: center;
       align-items: center;
-    }
+  }
 
 @media screen and (max-width: 450px) {
+
   .logo {
       width: 50%;
       height: auto;
       padding: .5em;
       margin-right: .2em;
-    }
+  }
 
     .nav {
       height: 15vh;
       display: flex;
       justify-content: unset;
       align-items: center;
-    }
+  }
 
     .burger {
       background-color: burlywood;
-    }
+  }
 }
-
-  
 
     .transparent {
       background-color: rgba(0, 0, 0, .3);
-    }
-
+  }
 
     a {
       color: #fff;
@@ -54,13 +51,12 @@ const HeaderStyled = styled.header`
       transition: .8s;
      
 
-      &:hover {
-        color: #DE8400;
-        font-family: ${theme.fonts.text2};
-        
-      }
-    }
-  
+        &:hover {
+          color: #DE8400;
+          font-family: ${theme.fonts.text2};
+          
+        }
+  }
 `;
 
 export default HeaderStyled;

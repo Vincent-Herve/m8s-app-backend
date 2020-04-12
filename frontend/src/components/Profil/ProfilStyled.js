@@ -31,65 +31,64 @@ const ProfilStyled = styled.main`
     display: block;
 }
 
-.ul {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1.2em;
-}
+  .ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2em;
+  }
 
-.button {
-    font-size: 30px;
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 2rem 0 5rem 0;
-	  border-radius: 25px;
-    text-decoration: none;
-    color: #FFF;
-    background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
-    background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
-    transition: .6s;
+  .button {
+      font-size: 30px;
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 2rem 0 5rem 0;
+      border-radius: 25px;
+      text-decoration: none;
+      color: #FFF;
+      background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+      background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+      transition: .6s;
 
-    &:hover {
-      background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
-      background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
-    }
-}
+      &:hover {
+        background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+        background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+      }
+  }
 
-.section-activity {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .section-activity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.contain-card {
-  display: flex;
-  justify-content: space-between;
-}
+  .contain-card {
+    display: flex;
+    justify-content: space-between;
+  }
 
-.article {
-  padding: 2.2rem 1em;
-  margin: 2rem;
-  border-radius: 5px;
-  
-  box-shadow: 1px 0px 7px -2px #000000;
-  background-color: #f4cba8;
-  transition: .3s ease-in-out;
-  position: relative;
+  .article {
+    padding: 2.2rem 1em;
+    margin: 2rem;
+    border-radius: 5px;
+    
+    box-shadow: 1px 0px 7px -2px #000000;
+    background-color: #f4cba8;
+    transition: .3s ease-in-out;
+    position: relative;
 
-   &:hover {
-    transform: scale(1.1);
-   }
+      &:hover {
+        transform: scale(1.1);
+      }
 
   .content-title {
     padding-bottom: .6em;
     border-bottom: solid 2px black;
-   }
+  }
 
   h3 {
     font-size: 1.5rem;
     margin-bottom: .5em;
-
   }
 
   .content-link {
@@ -118,7 +117,6 @@ const ProfilStyled = styled.main`
 @media screen and (max-width: 450px) {
   width: 100%;
 }
-
 `;
 
 export default ProfilStyled;

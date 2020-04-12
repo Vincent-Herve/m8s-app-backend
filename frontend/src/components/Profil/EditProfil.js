@@ -1,10 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import EditProfilStyled from './EditProfilStyled';
 import Field from './Field';
 
-const EditProfil = ({ handleEditProfil, email, password, username, firstname, lastname, changeField, isLoading }) => {
+const EditProfil = ({
+  handleEditProfil,
+  email,
+  password,
+  username,
+  firstname,
+  lastname,
+  changeField,
+  isLoading,
+}) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleEditProfil();
@@ -65,6 +73,9 @@ EditProfil.propTypes = {
   password: PropTypes.string.isRequired,
   changeField: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  username: PropTypes.string.isRequired,
+  firstname: PropTypes.string.isRequired,
+  lastname: PropTypes.string.isRequired,
 };
 
 export default EditProfil;

@@ -45,6 +45,7 @@ const Activity = (
 
   const handleRegisterClick = () => {
     if (users.length >= free_place) {
+      // eslint-disable-next-line no-alert
       alert('Il n\'y a plus de place disponible pour cette activité');
     }
     else {

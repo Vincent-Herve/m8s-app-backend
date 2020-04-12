@@ -10,7 +10,7 @@ const SearchActivityStyled = styled.div`
     display: inline-block;
     padding: 10px 20px;
     margin: 2rem 0 5rem 0;
-	  border-radius: 25px;
+    border-radius: 25px;
     text-decoration: none;
     color: #FFF;
     background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
@@ -23,26 +23,25 @@ const SearchActivityStyled = styled.div`
     }
 }
 
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-
-  select {
-    margin-bottom: 1em;
-    padding: .25em;
-    border: 0;
-    border-bottom: 2px solid #f4cba8; 
-    font-weight: bold;
-    letter-spacing: .15em;
-    border-radius: 0;
+select {
+  margin-bottom: 1em;
+  padding: .25em;
+  border: 0;
+  border-bottom: 2px solid #f4cba8; 
+  font-weight: bold;
+  letter-spacing: .15em;
+  border-radius: 0;
     &:focus, &:active {
       outline: 0;
       border-bottom-color: #DE8400;
     }
-  }
+}
 `;
 
 export default SearchActivityStyled;

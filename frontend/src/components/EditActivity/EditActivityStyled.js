@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const EditActivityStyled = styled.div`
-
 padding-top: 10em;
 min-height: 100vh;
 text-align: center;
