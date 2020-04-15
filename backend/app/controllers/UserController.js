@@ -227,6 +227,12 @@ const UserController = {
         } catch (error) {
             response.status(500).send(error);
         }
+    },
+    login: (request, response) => {
+        console.log('HELLO');
+        const {user} = request;
+
+        response.json(user);
     }
 };
 
