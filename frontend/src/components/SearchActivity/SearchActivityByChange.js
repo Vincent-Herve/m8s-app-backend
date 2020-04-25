@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import ClipLoader from 'react-spinners/ClipLoader';
 import Activity from './Activity';
 
 import Field from './Field';
@@ -8,38 +7,45 @@ import Field from './Field';
 import SearchActivityStyled from './SearchActivityStyled';
 
 const SearchActivity = ({
-  handleSearchActivity,
   location,
-  isLoading,
+  tagName,
   tagList,
   changeField,
   changeTag,
   activities,
 }) => {
-  const [message, setMessage] = useState(`${activities.length} activité(s) disponible(s)`);
+  const [stateActivities, setStateActivities] = useState('');
+  const [message, setMessage] = useState('');
+
+  const showActivity = [];
+  const viewActivity = (stateActivities.length ? true : false);
 
   useEffect(() => {
-    setMessage(`${activities.length} activité(s) disponible(s)`);
-  }, [activities]);
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    handleSearchActivity();
-  };
+    activities.forEach((activity) => {
+      if (tagName !== '') {
+        if (activity.tags[0].name.toLowerCase().indexOf(tagName.toLowerCase()) !== -1) {
+          showActivity.push(activity);
+        }
+      }
+      if (location !== '') {
+        if (activity.location.toLowerCase().indexOf(location.toLowerCase()) !== -1 && !showActivity.includes(activity)) {
+          showActivity.push(activity);
+        }
+      }
+    });
+    setMessage(`${showActivity.length} activité(s) disponible(s)`);
+    setStateActivities(showActivity);
+  }, [tagName, location]);
 
   const handleChangeTag = (evt) => {
     changeTag(evt.target.value);
   };
 
-  const viewActivities = (activities.length ? true : false)
-
-  const viewActivitiesOn = (viewActivities && !isLoading ? true : false);
   return (
     <SearchActivityStyled>
       <section>
-
         <h1>Rechercher une activité</h1>
-        <form className="login-form-element" onSubmit={handleSubmit}>
+        <form className="login-form-element">
           <Field
             name="location"
             placeholder="Lieu"
@@ -52,26 +58,12 @@ const SearchActivity = ({
               <option key={tag.id} value={tag.name}>{tag.name}</option>
             ))}
           </select>
-          <div>
-            <button
-              type="submit"
-              className="login-form-button"
-            >
-              Valider
-            </button>
-          </div>
         </form>
-        <ClipLoader
-          css="loading"
-          size={100}
-          color="orange"
-          loading={isLoading}
-        />
-        {viewActivitiesOn && (
+        {viewActivity && (
           <div className="contain">
             <h1>{message}</h1>
             <div className="cards">
-              {activities.map((activity) => <Activity key={activity.id} {...activity} />)}
+              {stateActivities.map((activity) => <Activity key={activity.id} {...activity} />)}
             </div>
           </div>
         )}
@@ -81,13 +73,12 @@ const SearchActivity = ({
 };
 
 SearchActivity.propTypes = {
-  handleSearchActivity: PropTypes.func.isRequired,
   location: PropTypes.string.isRequired,
   tagList: PropTypes.array.isRequired,
   changeField: PropTypes.func.isRequired,
   changeTag: PropTypes.func.isRequired,
   activities: PropTypes.array.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  tagName: PropTypes.string.isRequired,
 };
 
 export default SearchActivity;

@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import SearchActivity from 'src/components/SearchActivity';
+import SearchActivityByChange from 'src/components/SearchActivity/SearchActivityByChange';
 
 // Action Creators
 import { searchActivity, changeValue } from 'src/actions/activities';
@@ -11,7 +11,8 @@ import { changeTag } from 'src/actions/tag';
 const mapStateToProps = (state, ownProps) => ({
   tagList: state.tag.list,
   location: state.activities.location,
-  activities: state.activities.resultList,
+  tagName: state.tag.tagId,
+  activities: state.activities.list,
   isLoading: state.user.isLoading,
 });
 
@@ -31,4 +32,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SearchActivity);
+)(SearchActivityByChange);

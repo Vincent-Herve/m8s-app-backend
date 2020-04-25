@@ -85,7 +85,7 @@ const Signup = ({
         <ClipLoader
           css="loading"
           size={100}
-          color="aqua"
+          color="orange"
           loading={isLoading}
         />
         <div className="contain-links">

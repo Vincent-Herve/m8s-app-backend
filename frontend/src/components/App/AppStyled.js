@@ -5,6 +5,14 @@ const AppStyled = styled.div`
     font-size: 2em;
     color: white;
   }
+
+  .style-loading {
+    min-height: 100vh;
+    background-color: #EDA760;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export default AppStyled;

@@ -9,7 +9,7 @@ import Signin from 'src/containers/Signin';
 import Profil from 'src/containers/Profil';
 import DetailActivity from 'src/containers/DetailActivity';
 import CreateActivity from 'src/containers/CreateActivity';
-import SearchActivity from 'src/containers/SearchActivity';
+import SearchActivity from 'src/containers/SearchActivityByChange';
 import EditActivity from 'src/components/EditActivity';
 import Unsubscribe from 'src/containers/Profil/Unsubscribe';
 import EditProfil from 'src/containers/Profil/EditProfil';
@@ -41,7 +41,6 @@ const App = (
     reload,
   },
 ) => {
-
   // once the redirection is done, we pass the boolean to false
   if (redirection) {
     setRedirection();
@@ -58,8 +57,8 @@ const App = (
 
   return (
     <AppStyled>
+      {isLoading && <div className="style-loading"><p>Veuillez patienter</p></div>}
       <Header />
-      {isLoading && <div>Veuillez patienter</div>}
       {redirection && (
         <Redirect to="/" />
       )}
@@ -78,46 +77,26 @@ const App = (
         {redirectionCreate && (
           <Redirect to="/activity" />
         )}
-        <Route path="/activity" exact>
-          <Activities />
-        </Route>
-        <Route path="/activity/search" exact>
-          <SearchActivity />
-        </Route>
+        <Route path="/activity" exact component={Activities} />
+        <Route path="/activity/search" exact component={SearchActivity} />
         {!isLoading && (
           <Route path="/activity/:slug" exact component={DetailActivity} />
         )}
         <Route path="/editactivity" exact component={EditActivity} />
-        <Route path="/contact" exact>
-          <Contact />
-        </Route>
-        <Route path="/notices" exact>
-          <Notice />
-        </Route>
+        <Route path="/contact" exact component={Contact} />
+        <Route path="/notices" exact component={Notice} />
         {isLogged && (
           <>
-            <Route path="/create" exact>
-              <CreateActivity />
-            </Route>
+            <Route path="/create" exact component={CreateActivity} />
             {!isLoading && (
-              <Route path="/profil" exact>
-                <Profil />
-              </Route>
+              <Route path="/profil" exact component={Profil} />
             )}
-            <Route path="/editprofil" exact>
-              <EditProfil />
-            </Route>
-            <Route path="/unsubscribe" exact>
-              <Unsubscribe />
-            </Route>
+            <Route path="/editprofil" exact component={EditProfil} />
+            <Route path="/unsubscribe" exact component={Unsubscribe} />
           </>
         )}
-        <Route path="/signup" exact>
-          <Signup />
-        </Route>
-        <Route path="/signin" exact>
-          <Signin />
-        </Route>
+        <Route path="/signup" exact component={Signup} />
+        <Route path="/signin" exact component={Signin} />
       </Switch>
       <Footer />
     </AppStyled>

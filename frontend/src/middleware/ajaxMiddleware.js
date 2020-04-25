@@ -35,7 +35,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     case SIGNIN: {
       const state = store.getState();
       const { email, password } = state.user;
-      axios.post('http://localhost:3000/signin', {
+      axios.post('http://localhost:3000/api/auth/signin', {
         email,
         password,
       }, {
@@ -46,7 +46,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           setTimeout(() => {
             store.dispatch(isLoading());
             store.dispatch(redirection());
-            store.dispatch(saveUser(response.data.info.user));
+            store.dispatch(saveUser(response.data.info));
             store.dispatch(messageError(''));
           }, 3000);
         })
@@ -68,7 +68,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         passwordConfirm,
       } = state.user;
 
-      axios.post('http://localhost:3000/signup', {
+      axios.post('http://localhost:3000/api/auth/signup', {
         username,
         firstname,
         lastname,
@@ -95,7 +95,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     }
 
     case SIGNOUT: {
-      axios.post('http://localhost:3000/disconnect', {
+      axios.post('http://localhost:3000/api/auth/disconnect', {
       }, {
         withCredentials: true,
       })
@@ -111,7 +111,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     }
 
     case CHECK_IS_LOGGED:
-      axios.post('http://localhost:3000/isLogged', {}, {
+      axios.post('http://localhost:3000/api/auth/isLogged', {}, {
         withCredentials: true,
       })
         .then((response) => {
@@ -129,7 +129,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     case UNSUBSCRIBE: {
       const state = store.getState();
       const { userProfil } = state.user;
-      axios.delete(`http://localhost:3000/unsubscribe/${userProfil.id}`, {
+      axios.delete(`http://localhost:3000/api/unsubscribe/${userProfil.id}`, {
       }, {
         withCredentials: true,
       })
@@ -162,7 +162,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         firstname: newFirstname,
         lastname: newLastname,
       };
-      axios.patch(`http://localhost:3000/profil/${userProfil.id}`, {
+      axios.patch(`http://localhost:3000/api/profil/${userProfil.id}`, {
         email,
         password,
         firstname,
@@ -187,8 +187,8 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     }
     case FETCH_ACTIVITIES: {
       axios.all([
-        axios.get('http://localhost:3000/activity'),
-        axios.get('http://localhost:3000/tag'),
+        axios.get('http://localhost:3000/api/activity'),
+        axios.get('http://localhost:3000/api/tag'),
       ])
         .then(axios.spread((activities, tags) => {
           // do something with both responses
@@ -215,7 +215,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         hour,
       } = state.activities;
       const { tagId } = state.tag;
-      axios.post('http://localhost:3000/activity', {
+      axios.post('http://localhost:3000/api/activity', {
         title,
         description,
         free_place,
@@ -243,7 +243,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     case REGISTER_ACTIVITY: {
       // eslint-disable-next-line prefer-destructuring
       const userId = action.user;
-      axios.post(`http://localhost:3000/activity/${action.id}/user`, {
+      axios.post(`http://localhost:3000/api/activity/${action.id}/user`, {
         userId,
       }, {
         withCredentials: true,
@@ -260,7 +260,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
 
     case LEFT_ACTIVITY: {
       // eslint-disable-next-line prefer-destructuring
-      axios.delete(`http://localhost:3000/activity/${action.id}/user/${action.user}`, {
+      axios.delete(`http://localhost:3000/api/activity/${action.id}/user/${action.user}`, {
       }, {
         withCredentials: true,
       })
@@ -279,7 +279,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       const { location } = state.activities;
       const { tagId } = state.tag;
       const tag = tagId;
-      axios.post('http://localhost:3000/activity/search', {
+      axios.post('http://localhost:3000/api/activity/search', {
         location,
         tag,
       }, {

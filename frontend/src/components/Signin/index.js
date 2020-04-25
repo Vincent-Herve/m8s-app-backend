@@ -55,6 +55,7 @@ const Signin = ({
         <div className="contain-links">
           <Link className="links" to="/forgotten">Mot de passe oublié</Link>
         </div>
+        <a href="http://localhost:3000/auth/facebook">Login Facebook</a>
       </section>
     </SigninStyled>
   );
