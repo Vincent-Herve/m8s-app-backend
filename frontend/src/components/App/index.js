@@ -15,9 +15,9 @@ import Unsubscribe from 'src/containers/Profil/Unsubscribe';
 import EditProfil from 'src/containers/Profil/EditProfil';
 import Activities from 'src/containers/Activities';
 import CardsActivity from 'src/containers/CardsActivity';
-import Presentation from 'src/components/Home/Presentation';
 import Contact from 'src/components/Contact';
 import Notice from 'src/components/Mentions-légales';
+import RequireAuthentication from 'src/components/Helpers/RequireAuthentication';
 
 import {
   Route,
@@ -69,7 +69,6 @@ const App = (
             {!isLogged && (
               <>
                 <CardsActivity />
-                <Presentation />
               </>
             )}
           </Route>
@@ -85,12 +84,12 @@ const App = (
         <Route path="/editactivity" exact component={EditActivity} />
         <Route path="/contact" exact component={Contact} />
         <Route path="/notices" exact component={Notice} />
+        {!isLoading && (
+          <Route path="/profil" exact component={RequireAuthentication(Profil, isLogged)} />
+        )}
         {isLogged && (
           <>
             <Route path="/create" exact component={CreateActivity} />
-            {!isLoading && (
-              <Route path="/profil" exact component={Profil} />
-            )}
             <Route path="/editprofil" exact component={EditProfil} />
             <Route path="/unsubscribe" exact component={Unsubscribe} />
           </>

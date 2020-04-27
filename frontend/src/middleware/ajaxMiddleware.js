@@ -75,8 +75,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         email,
         password,
         passwordConfirm,
-      }, {
-        withCredentials: true,
       })
         .then(() => {
           store.dispatch(isLoading());
@@ -130,8 +128,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       const state = store.getState();
       const { userProfil } = state.user;
       axios.delete(`http://localhost:3000/api/unsubscribe/${userProfil.id}`, {
-      }, {
-        withCredentials: true,
       })
         .then((response) => {
           if (response.data.finally) {
@@ -168,8 +164,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         firstname,
         lastname,
         username,
-      }, {
-        withCredentials: true,
       })
         .then(() => {
           store.dispatch(isLoading());
@@ -224,8 +218,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         hour,
         tagId,
         userId,
-      }, {
-        withCredentials: true,
       })
         .then(() => {
           setTimeout(() => {
@@ -245,8 +237,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       const userId = action.user;
       axios.post(`http://localhost:3000/api/activity/${action.id}/user`, {
         userId,
-      }, {
-        withCredentials: true,
       })
         .then(() => {
           store.dispatch(updateUser());
@@ -261,8 +251,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     case LEFT_ACTIVITY: {
       // eslint-disable-next-line prefer-destructuring
       axios.delete(`http://localhost:3000/api/activity/${action.id}/user/${action.user}`, {
-      }, {
-        withCredentials: true,
       })
         .then(() => {
           store.dispatch(deleteUserActivity());
@@ -282,8 +270,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       axios.post('http://localhost:3000/api/activity/search', {
         location,
         tag,
-      }, {
-        withCredentials: true,
       })
         .then((response) => {
           store.dispatch(isLoading());
