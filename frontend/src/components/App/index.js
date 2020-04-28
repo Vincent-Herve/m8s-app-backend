@@ -16,13 +16,14 @@ import EditProfil from 'src/containers/Profil/EditProfil';
 import Activities from 'src/containers/Activities';
 import CardsActivity from 'src/containers/CardsActivity';
 import Contact from 'src/components/Contact';
-import Notice from 'src/components/Mentions-légales';
+import Notice from 'src/components/Notice';
 import RequireAuthentication from 'src/components/Helpers/RequireAuthentication';
 
 import {
   Route,
   Switch,
   Redirect,
+  useLocation,
 } from 'react-router-dom';
 
 import AppStyled from './AppStyled';
@@ -55,45 +56,28 @@ const App = (
   // We consume API to get all activities, initial render and set redirectionCreate, reload
   useEffect(fetchActivities, [redirectionCreate, reload]);
 
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <AppStyled>
-      {isLoading && <div className="style-loading"><p>Veuillez patienter</p></div>}
       <Header />
-      {redirection && (
-        <Redirect to="/" />
-      )}
+      {redirection && <Redirect to="/" />}
       <Switch>
-        {!isLoading && (
-          <Route path="/" exact>
-            <Home />
-            {!isLogged && (
-              <>
-                <CardsActivity />
-              </>
-            )}
-          </Route>
-        )}
-        {redirectionCreate && (
-          <Redirect to="/activity" />
-        )}
+        <Route path="/" exact render={() => <><Home isLoading={isLoading} /><CardsActivity isLoading={isLoading} /></>} />
+        {redirectionCreate && <Redirect to="/activity" />}
         <Route path="/activity" exact component={Activities} />
         <Route path="/activity/search" exact component={SearchActivity} />
-        {!isLoading && (
-          <Route path="/activity/:slug" exact component={DetailActivity} />
-        )}
+        {!isLoading && <Route path="/activity/:slug" exact component={DetailActivity} />}
         <Route path="/editactivity" exact component={EditActivity} />
         <Route path="/contact" exact component={Contact} />
         <Route path="/notices" exact component={Notice} />
-        {!isLoading && (
-          <Route path="/profil" exact component={RequireAuthentication(Profil, isLogged)} />
-        )}
-        {isLogged && (
-          <>
-            <Route path="/create" exact component={CreateActivity} />
-            <Route path="/editprofil" exact component={EditProfil} />
-            <Route path="/unsubscribe" exact component={Unsubscribe} />
-          </>
-        )}
+        <Route path="/profil" exact component={RequireAuthentication(Profil, isLogged, isLoading)} />
+        <Route path="/create" exact component={RequireAuthentication(CreateActivity, isLogged)} />
+        <Route path="/editprofil" exact component={RequireAuthentication(EditProfil, isLogged)} />
+        <Route path="/unsubscribe" exact component={RequireAuthentication(Unsubscribe, isLogged)} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
       </Switch>

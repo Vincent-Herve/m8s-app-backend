@@ -29,7 +29,6 @@ import {
 
 import { saveTags } from '../actions/tag';
 
-
 const ajaxMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case SIGNIN: {

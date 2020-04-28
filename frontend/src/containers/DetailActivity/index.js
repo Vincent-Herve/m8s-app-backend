@@ -6,7 +6,7 @@ import DetailActivity from 'src/components/Activities/DetailActivity';
 // Action Creators & Selector
 import { getActivityBySlug } from 'src/selectors/Activities';
 
-import { registerActivity, leftActivity, fetchActivities } from 'src/actions/activities';
+import { registerActivity, leftActivity } from 'src/actions/activities';
 
 /* === State (données) === */
 const mapStateToProps = (state, ownProps) => ({
