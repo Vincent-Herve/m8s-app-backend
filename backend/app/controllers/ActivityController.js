@@ -235,9 +235,7 @@ const ActivityController = {
                 response.status(500).json(bodyErrors);
             } else {
 
-                let activity = await Activity.findByPk(activityId, {
-                    include: ['users']
-                });
+                let activity = await Activity.findByPk(activityId);
 
                 if (!activity) {
                     response.status(404).json(`Cant find activity with the id ${activityId}`);
@@ -247,11 +245,7 @@ const ActivityController = {
                     if (!user) {
                         response.status(404).json(`Cant find a user with the id ${userId}`);
                     } else {
-
                         await activity.addUser(user);
-
-                        activity.users.push(user);
-
                         response.json('OK');
                     }
                 }

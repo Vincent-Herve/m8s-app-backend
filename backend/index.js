@@ -2,10 +2,28 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-// Passport Local
+// Cors
+const cors = require('cors');
 
-const passport = require('passport'),
-LocalStrategy = require('passport-local').Strategy;
+const corsOption = {
+  origin: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  exposedHeaders: ['Origin, X-Requested-With, Content-Type, Accept']
+};
+
+// Passport
+const passport = require('passport');
+
+// Store user information into session
+passport.serializeUser(function(user, done) {
+  return done(null, user);
+});
+  
+// Get user information out of session
+passport.deserializeUser(function(id, done) {
+  return done(null, id);
+});
 
 // BodyParser
 const bodyParser = require('body-parser');
@@ -17,6 +35,13 @@ const session = require('express-session');
 const express = require('express');
 const app = express();
 
+// Ejs
+app.set('view engine', 'ejs');
+
+app.use(express.static('public'));
+
+app.use(cors(corsOption));
+
 app.use(session({
   saveUninitialized: true,
   resave: false,
@@ -26,7 +51,6 @@ app.use(session({
 
 app.use(bodyParser.json());
 
-// Rend disponibles les données envoyées par l'utilisateur, via req.body
 app.use(express.urlencoded({
   extended: true
 }));
@@ -34,36 +58,8 @@ app.use(express.urlencoded({
 app.use(passport.initialize()); 
 app.use(passport.session());
 
-app.use((request, response, next) => {
-  response.header('Access-Control-Allow-Origin', 'http://localhost:8080');
-  response.header('Access-Control-Allow-Credentials', true);
-  response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  response.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE, PATCH');
-  next();
-});
-
-/*
-passport.use(new LocalStrategy (
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
-*/
-
 // Router
 const router = require('./app/router');
-
-// Cors
-const cors = require('cors');
 
 const PORT = process.env.PORT || 3000;
 

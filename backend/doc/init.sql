@@ -29,6 +29,9 @@ CREATE TABLE "user" (
     "avatar_url" VARCHAR,
     "email" TEXT UNIQUE NOT NULL,
     "password" TEXT NOT NULL,
+    "isVerified" BOOLEAN DEFAULT FALSE,
+    "resetPasswordToken" TEXT NULL,
+    "resetPasswordExpires" TIMESTAMP NULL,
     "created_at" TIMESTAMP NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMP
 );
@@ -85,16 +88,16 @@ CREATE TABLE "activities_have_users" (
 
 -- 3 activités
 
-INSERT INTO "activity"("title", "description", "free_place", "location", "date", "hour", "user_id") VALUES ('Futsal tonight', 'Je cherche du monde pour organiser un futsal', 10, 'Bayonne', '2020-03-30', '21:00:00', 2), ('Tennis niveau débutant', 'Cherche un joueur débutant pour un tennis', 2, 'Marseille', '2020-03-30', '14:00:00', 2),
-('Paintball de la mort qui tue', 'Cherche du monde pour un paitball 5vs5', 10, 'Toulouse', '2020-03-30', '16:00:00', 3);
+INSERT INTO "activity"("title", "description", "free_place", "location", "date", "hour", "user_id") VALUES ('Futsal tonight', 'Je cherche du monde pour organiser un futsal', 10, 'Bayonne', '2020-03-30', '21:00:00', 4), ('Tennis niveau débutant', 'Cherche un joueur débutant pour un tennis', 2, 'Marseille', '2020-03-30', '14:00:00', 4),
+('Paintball de la mort qui tue', 'Cherche du monde pour un paintball 5vs5', 10, 'Toulouse', '2020-03-30', '16:00:00', 4);
 
 -- 4 utilisateurs
 
-INSERT INTO "user"("username", "firstname", "lastname", "avatar_url", "email", "password") VALUES
-    ('Boyz', 'John', 'Doe', '', 'doe@gmail.com', '$2a$10$RhKlCOGaLI3maUMZm.tRYe5IWlVwW8t6X7EEBdMIbBrsq3sBXQexq'),
-    ('Lakiura', 'Mike', 'Dendele', '', 'mike@gmail.com', '$2a$10$RhKlCOGaLI3maUMZm.tRYe5IWlVwW8t6X7EEBdMIbBrsq3sBXQexq'),
-    ('Kiks', 'Franck', 'Dourny', '', 'franck@gmail.com', '$2a$10$RhKlCOGaLI3maUMZm.tRYe5IWlVwW8t6X7EEBdMIbBrsq3sBXQexq'),
-    ('Vins', 'Vincent', 'Herve', '', 'vincent@gmail.com', '$2a$10$RhKlCOGaLI3maUMZm.tRYe5IWlVwW8t6X7EEBdMIbBrsq3sBXQexq');
+INSERT INTO "user"("username", "firstname", "lastname", "avatar_url", "email", "password", "isVerified", "resetPasswordToken", "resetPasswordExpires") VALUES
+    ('Boyz', 'John', 'Doe', '', 'doe@gmail.com', '$2a$10$RhKlCOGaLI3maUMZm.tRYe5IWlVwW8t6X7EEBdMIbBrsq3sBXQexq', false, null, null),
+    ('Lakiura', 'Mike', 'Dendele', '', 'mike@gmail.com', '$2a$10$RhKlCOGaLI3maUMZm.tRYe5IWlVwW8t6X7EEBdMIbBrsq3sBXQexq', false, null, null),
+    ('Kiks', 'Franck', 'Dourny', '', 'franck@gmail.com', '$2a$10$RhKlCOGaLI3maUMZm.tRYe5IWlVwW8t6X7EEBdMIbBrsq3sBXQexq', false, null, null),
+    ('Vins', 'Vincent', 'Herve', '', 'vincent.herve2012@laposte.net', '$2a$10$RhKlCOGaLI3maUMZm.tRYe5IWlVwW8t6X7EEBdMIbBrsq3sBXQexq', false, null, null);
 
 -- 4 tags
 
@@ -110,16 +113,16 @@ INSERT INTO "tag"("name") VALUES (''), ('adrénaline'), ('accrobranche'), ('aér
 -- relation activité <> user
 
 INSERT INTO "activities_have_users"("activity_id", "user_id") VALUES
-    (1, 2),
-    (2, 3),
-    (2, 4);
+    (1, 4),
+    (2, 4),
+    (3, 4);
 
 -- relation activité <> tag
 
 INSERT INTO "activities_have_tags"("activity_id", "tag_id") VALUES
-    (1, 1),
-    (2, 2),
-    (3, 4);
+    (1, 34),
+    (2, 77),
+    (3, 52);
 
 
 -- relation user <> tag 

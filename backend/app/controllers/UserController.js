@@ -1,8 +1,9 @@
 // Import
 const { User, Tag, Activity } = require('../models/relations');
+const { Op } = require("sequelize");
 const emailValidator = require('email-validator');
 const bcrypt = require('bcryptjs');
-const crypto = require('crypto');
+var crypto = require("crypto");
 const nodemailer = require('nodemailer');
 
 const transport = {
@@ -43,23 +44,140 @@ const UserController = {
             // Envoie du mail
             transporter.sendMail(mail, (err, data) => {
                 if (err) {
-                response.json({
+                    response.json({
                     status: 'fail'
-                })
+                    })
                 } else {
-                response.json({
-                status: 'success'
-                })
+                    response.json({
+                    status: 'success'
+                    })
                 }
             });
     },
-    // route: POST /forgotten
-    forgotten: async (req, res, next) => {
+    // route: POST /api/auth/recover
+    recover: async (req, res, next) => {
         try {
+            const token = await crypto.randomBytes(32).toString('hex');
+
+            const user = await User.findOne({
+                where: {
+                    email: req.body.email
+                }
+            });
+
+            if (!user) {
+                return response.status(401).json('No account with that email address exists.');
+            }
+
+            const test = Date.now() + 3600000;
+
+            user.resetPasswordToken = token;
+            user.resetPasswordExpires = test;
             
+            await user.save();
+            console.log("test ===>", user.resetPasswordExpires, Date.now())
+            const mail = {
+                from: 'Admin',
+                to: user.email,
+                subject: 'M8S Password Reset',
+                text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                  'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                  'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+                  'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+              };
+            
+            // Envoie du mail
+            transporter.sendMail(mail, (err, data) => {
+                if (err) {
+                    res.json({
+                    status: 'fail'
+                    })
+                } else {
+                    res.json({
+                    status: 'success'
+                    })
+                }
+            });
 
         } catch (error) {
-            response.status(500).send(error);
+            res.status(500).send(error);
+        }
+    },
+    // route: GET /reset/:token
+    getResetPassword: async (req, res) => {
+        try {
+            const user = await User.findOne({
+                where: {
+                    resetPasswordToken: req.params.token,
+                    resetPasswordExpires: {
+                        [Op.gt]: Date.now()
+                      }
+                }
+            });
+            console.log("test ===>", user.resetPasswordExpires, Date.now())
+            if (!user) {
+                return res.status(401).json('Password reset token is invalid or has expired.');
+            }
+
+            res.render('reset', {token: req.params.token});
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    },
+    // route: POST /reset/:token
+    postResetPassword: async (req, res) => {
+        try {
+            const user = await User.findOne({
+                where: {
+                    resetPasswordToken: req.params.token,
+                    resetPasswordExpires: {
+                        [Op.gt]: Date.now()
+                      }
+                }
+            });
+            
+            if (!user) {
+                return res.status(401).json('Password reset token is invalid or has expired.');
+            }
+
+            if (req.body.password === req.body.confirm) {
+                const encryptedPassword = await bcrypt.hash(
+                    req.body.password,
+                    10
+                );
+                user.password = encryptedPassword;
+                user.resetPasswordToken = null;
+                user.resetPasswordExpires = null;
+
+                await user.save();
+
+            } else {
+                return res.status(401).json('Passwords do not match.');
+            }
+
+            const mail = {
+                from: 'Admin',
+                to: user.email,
+                subject: 'Your password has been changed',
+                text: 'Hello,\n\n' +
+                'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+              };
+            
+            // Envoie du mail
+            await transporter.sendMail(mail, (err, data) => {
+                if (err) {
+                    res.json({
+                    status: 'fail'
+                    })
+                } else {
+                    res.json({
+                    status: 'success'
+                    })
+                }
+            });
+
+        } catch (error) {
+            res.status(500).send(error);
         }
     },
     // route: POST /signup
@@ -109,40 +227,6 @@ const UserController = {
             response.status(500).send(error);
         }
 
-    },
-    // route: POST /signin
-    signin: async (request, response) => {
-        try {
-            const user = await User.findOne({
-                where: {
-                    email: request.body.email
-                },
-                include: [{
-                    association: 'activities',
-                    include: ['tags']
-                },
-                {
-                    association: 'user_tags'
-                }]
-            });
-
-            if (!user) {
-                return response.status(401).json("Cet email n'existe pas");
-            }
-
-            const passwordExpected = user.getPassword();
-            const validPassword = await bcrypt.compare(request.body.password, passwordExpected);
-
-            if (!validPassword) {
-                return response.status(401).json("Ce n'est pas le bon mot de passe");
-            }
-
-            request.session.user = user.dataValues;
-            delete request.session.user.password;
-            response.status(200).json({ logged: true, info: { user: request.session.user } });
-        } catch (error) {
-            response.status(500).send(error);
-        }
     },
     // route: PATCH /profil/:id
     editProfil: async (request, response) => {
@@ -203,15 +287,15 @@ const UserController = {
     },
     // route: POST /isLogged
     isLogged: (request, response) => {
-        if (request.session.user) {
-            return response.status(200).json({ logged: true, info: { user: request.session.user } });
+        if (request.session.passport !== undefined) {
+            return response.status(200).json({ logged: true, info: { user: request.session.passport.user } });
         } else {
             return response.status(401).json({ logged: false, info: {  } });
         }
     },
-    // route: POST /disconnect
+    // route: POST /api/auth/disconnect
     disconnect: (request, response) => {
-        if (request.session.user) {
+        if (request.session.passport.user) {
                 request.session.destroy();
                 response.status(200).json({ logged: false});
         }
@@ -228,11 +312,11 @@ const UserController = {
             response.status(500).send(error);
         }
     },
-    login: (request, response) => {
-        console.log('HELLO');
-        const {user} = request;
-
-        response.json(user);
+    // route: POST /signin
+    signin: (request, response) => {
+        const { user } = request;
+        delete user.dataValues.password;
+        response.json({info: user});
     }
 };
 
