@@ -39,22 +39,20 @@ const HeaderStyled = styled.header`
 }
 
     .transparent {
-      background-color: rgba(0, 0, 0, .3);
+      background-color: rgba(74, 74, 74, .3);
   }
 
     a {
       color: #fff;
-      text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
+      
       font-family: ${theme.fonts.text2};
       font-size: 1.3em;
       padding: 0 .6em;
-      transition: .8s;
-     
+      transition: .4s;
 
         &:hover {
-          color: #DE8400;
+          color: #ff8800;
           font-family: ${theme.fonts.text2};
-          
         }
   }
 `;

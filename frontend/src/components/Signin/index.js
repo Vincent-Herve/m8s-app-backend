@@ -14,10 +14,15 @@ const Signin = ({
   isLoading,
   changeField,
   messageError,
+  setMessageError,
 }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleSignin();
+    if (email !== '' && password !== '') {
+      setMessageError('');
+      return handleSignin();
+    }
+    setMessageError('Veuillez remplir tout les champs.');
   };
   return (
     <SigninStyled>
@@ -68,6 +73,7 @@ Signin.propTypes = {
   handleSignin: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   messageError: PropTypes.string.isRequired,
+  setMessageError: PropTypes.func.isRequired,
 };
 
 export default Signin;

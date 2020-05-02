@@ -126,7 +126,7 @@ DetailActivity.propTypes = {
   registerActivity: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
   userProfilId: PropTypes.node.isRequired,
-  tagList: PropTypes.node.isRequired,
+  tagList: PropTypes.array.isRequired,
 };
 
 // == Export

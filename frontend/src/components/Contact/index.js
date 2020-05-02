@@ -12,7 +12,7 @@ const Contact = () => {
   const handleSubmitForm = (evt) => {
     evt.preventDefault();
 
-    axios.post('http://localhost:3000/contact', {
+    axios.post('http://localhost:3000/api/contact', {
       name: valueForm.name,
       email: valueForm.email,
       message: valueForm.message,
@@ -56,8 +56,8 @@ const Contact = () => {
           <input type="text" value={valueForm.email} onChange={onEmailChange} placeholder="Email" />
           <p>Description :</p>
           <textarea row="10" cols="40" value={valueForm.message} onChange={onMessageChange} placeholder="Décrivez votre demande" />
+          <button className="input" type="submit">Envoyer</button>
         </form>
-        <button className="input" type="submit">Envoyer</button>
         <img src={Logo} alt="logo" className="logo" />
       </main>
     </ContactStyled>

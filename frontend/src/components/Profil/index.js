@@ -25,6 +25,8 @@ const Profil = ({ userProfil, handleSignout, activities }) => {
     }
   }
 
+  const viewActivities = (!filteredActivities.length);
+
   const [tab, setTab] = useState('infoUser');
   const generateClickHandler = (newTab) => () => {
     setTab(newTab);
@@ -52,6 +54,7 @@ const Profil = ({ userProfil, handleSignout, activities }) => {
         {tab === 'currentActivity' && (
           <section className="section-activity">
             <h2>Mes activités en cours</h2>
+            {viewActivities && <h4>Pas d'activité en cours</h4>}
             <div className="contain-card">
               {filteredActivities.map((activity) => {
                 const authorActivity = (activity.user_id === userProfil.id ? true : false);

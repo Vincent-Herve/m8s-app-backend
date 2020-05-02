@@ -18,7 +18,7 @@ const SearchActivity = ({
   const [message, setMessage] = useState('');
 
   const showActivity = [];
-  const viewActivity = (stateActivities.length ? true : false);
+  const viewActivity = (!!stateActivities.length);
 
   useEffect(() => {
     activities.forEach((activity) => {

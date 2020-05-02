@@ -35,13 +35,12 @@ const Activity = (
     // eslint-disable-next-line comma-dangle
   }
 ) => {
-
   // state message register or left activity
   const [message, setMessage] = useState('');
 
   const memberActivity = users.filter((user) => user.id === userProfilId);
-  const memberActivityReserved = (memberActivity.length && isLogged ? true : false);
-  const memberActivityNotReserved = (isLogged && (memberActivityReserved === false) ? true : false);
+  const memberActivityReserved = (!!(memberActivity.length && isLogged));
+  const memberActivityNotReserved = (!!(isLogged && (memberActivityReserved === false)));
 
   const handleRegisterClick = () => {
     if (users.length >= free_place) {

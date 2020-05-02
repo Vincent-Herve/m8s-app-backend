@@ -4,7 +4,7 @@ import theme from 'src/styles/theme';
 const ActivitiesStyled = styled.div`
 
 min-height: 100vh;
-background-color: #f1f1f1;
+background-color: #fff;
 padding: 10em 0;
 color: black;
 

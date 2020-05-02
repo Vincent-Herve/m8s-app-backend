@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Signin from 'src/components/Signin';
 
 // Action Creators
-import { signin, changeValue } from 'src/actions/user';
+import { signin, changeValue, messageError } from 'src/actions/user';
 
 const mapStateToProps = (state, ownProps) => ({
   email: state.user.email,
@@ -20,6 +20,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   changeField: (value, name) => {
     dispatch(changeValue(value, name));
+  },
+  setMessageError: (message) => {
+    dispatch(messageError(message));
   },
 });
 

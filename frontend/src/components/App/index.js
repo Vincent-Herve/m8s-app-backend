@@ -6,6 +6,7 @@ import Footer from 'src/components/Footer';
 import Home from 'src/containers/Home';
 import Signup from 'src/containers/Signup';
 import Signin from 'src/containers/Signin';
+import Forgotten from 'src/components/Forgotten';
 import Profil from 'src/containers/Profil';
 import DetailActivity from 'src/containers/DetailActivity';
 import CreateActivity from 'src/containers/CreateActivity';
@@ -40,6 +41,7 @@ const App = (
     fetchActivities,
     isLoading,
     reload,
+    messageError,
   },
 ) => {
   // once the redirection is done, we pass the boolean to false
@@ -59,6 +61,7 @@ const App = (
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
+    messageError('');
   }, [pathname]);
 
   return (
@@ -80,6 +83,8 @@ const App = (
         <Route path="/unsubscribe" exact component={RequireAuthentication(Unsubscribe, isLogged)} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
+        <Route path="/forgotten" exact component={Forgotten} />
+        <Route render={() => <p>Page non trouvée !</p>} />
       </Switch>
       <Footer />
     </AppStyled>
@@ -96,6 +101,7 @@ App.propTypes = {
   redirectionCreate: PropTypes.bool.isRequired,
   setRedirectionCreate: PropTypes.func.isRequired,
   reload: PropTypes.bool.isRequired,
+  messageError: PropTypes.func.isRequired,
 };
 
 // == Export

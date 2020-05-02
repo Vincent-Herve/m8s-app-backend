@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 // == Import : local
 import App from 'src/components/App';
 import { fetchActivities, redirectionCreate } from 'src/actions/activities';
+
 // Action Creators
-import { redirection, checkIsLogged } from 'src/actions/user';
+import { redirection, checkIsLogged, messageError } from 'src/actions/user';
 
 const mapStateToProps = (state, ownProps) => ({
   redirection: state.user.redirection,
@@ -27,6 +28,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   fetchActivities: () => {
     dispatch(fetchActivities());
+  },
+  messageError: (message) => {
+    dispatch(messageError(message));
   },
 });
 

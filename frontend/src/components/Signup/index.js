@@ -25,6 +25,7 @@ const Signup = ({
     } else if (password !== passwordConfirm) {
       setMessageError('Erreur sur le mot de passe');
     } else {
+      setMessageError('');
       handleSignup();
     }
   };

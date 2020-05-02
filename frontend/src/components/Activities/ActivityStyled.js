@@ -3,10 +3,10 @@ import styled from 'styled-components';
 const ActivityStyled = styled.div`
    padding: 2.2rem 1em;
    margin: 2rem;
-   border-radius: 5px;
+   border-radius: 3px;
    width: 28%;
    box-shadow: 1px 0px 7px -2px #000000;
-   background-color: #f4cba8;
+   background-color: #f1f1f1;
    transition: .3s ease-in-out;
    position: relative;
 

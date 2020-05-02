@@ -41,12 +41,12 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         withCredentials: true,
       })
         .then((response) => {
+          store.dispatch(messageError(''));
           store.dispatch(isLoading());
           setTimeout(() => {
             store.dispatch(isLoading());
             store.dispatch(redirection());
             store.dispatch(saveUser(response.data.info));
-            store.dispatch(messageError(''));
           }, 3000);
         })
         .catch((errors) => {
