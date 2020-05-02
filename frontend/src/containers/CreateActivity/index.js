@@ -10,6 +10,7 @@ import { changeTag } from 'src/actions/tag';
 
 const mapStateToProps = (state, ownProps) => ({
   tagId: state.tag.list,
+  tagValue: state.tag.tagId,
   title: state.activities.title,
   description: state.activities.description,
   free_place: state.activities.free_place,

@@ -4,12 +4,11 @@
 /* eslint-disable prefer-destructuring */
 import React, { useState } from 'react';
 import axios from 'axios';
-import PropTypes, { number } from 'prop-types';
+import PropTypes from 'prop-types';
 import {
   Redirect,
 } from 'react-router-dom';
 import EditActivityStyled from './EditActivityStyled';
-
 
 const EditActivity = (props) => {
   const [redirect, setRedirect] = useState(false);

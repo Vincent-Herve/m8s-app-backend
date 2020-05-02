@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ClipLoader from 'react-spinners/ClipLoader';
 import CreateActivityStyled from './CreateActivityStyled';
@@ -14,13 +14,23 @@ const CreateActivity = ({
   date,
   hour,
   tagId,
+  tagValue,
   isLoading,
   changeField,
   changeTag,
 }) => {
+  const [message, setMessage] = useState('');
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleCreate();
+    // eslint-disable-next-line camelcase
+    if (title === '' || description === '' || free_place === '' || location === '' || date === '' || hour === '' || tagValue === '') {
+      return setMessage('Veuillez remplir tout les champs.');
+    }
+    return (
+      setMessage(''),
+      handleCreate()
+    );
   };
 
   const handleChangeTag = (evt) => {
@@ -87,12 +97,12 @@ const CreateActivity = ({
               Valider
             </button>
           </div>
-
         </form>
+        <p style={{ color: 'red' }}>{message}</p>
         <ClipLoader
           css="loading"
           size={100}
-          color="aqua"
+          color="orange"
           loading={isLoading}
         />
       </section>
@@ -112,6 +122,7 @@ CreateActivity.propTypes = {
   handleCreate: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   changeTag: PropTypes.func.isRequired,
+  tagValue: PropTypes.string.isRequired,
 };
 
 export default CreateActivity;

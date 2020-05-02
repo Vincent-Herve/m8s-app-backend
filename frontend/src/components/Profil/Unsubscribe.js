@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import UnsubscribeStyled from './UnsubscribeStyled';
 
 const Unsubscribe = ({ handleUnsubscribe }) => {
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+
   const buttonHandleClick = () => {
-    handleUnsubscribe();
+    setLoading(true);
+    setMessage('Désinscription en cours ...');
+    setTimeout(() => {
+      setLoading(false);
+      handleUnsubscribe();
+    }, 1000);
   };
   return (
-    <div style={{ padding: '10em' }}>
+    <UnsubscribeStyled>
       <p>Etes-vous sur de vouloir vous désinscrire, votre profil sera supprimé !</p>
       <button type="button" onClick={buttonHandleClick}>Se désinscrire</button>
-    </div>
+      {loading && <p style={{ fontWeight: 'bold' }}>{message}</p>}
+    </UnsubscribeStyled>
   );
 };
 

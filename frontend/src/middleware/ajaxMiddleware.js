@@ -219,7 +219,9 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         userId,
       })
         .then(() => {
+          store.dispatch(isLoading());
           setTimeout(() => {
+            store.dispatch(isLoading());
             store.dispatch(redirectionCreate());
           }, 1500);
 
