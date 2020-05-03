@@ -7,10 +7,12 @@ import {
   UPDATE_USER,
   DELETE_USER_ACTIVITY,
   MESSAGE_ERROR,
+  SET_RESET,
 } from 'src/actions/user';
 
 export const initialState = {
   redirection: false,
+  reset: '',
   isLoading: false,
   reload: false,
   messageError: '',
@@ -92,6 +94,11 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         messageError: action.message,
+      };
+    case SET_RESET:
+      return {
+        ...state,
+        reset: action.bool,
       };
     default:
       return state;

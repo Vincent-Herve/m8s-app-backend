@@ -14,6 +14,9 @@ import {
   updateUser,
   deleteUserActivity,
   messageError,
+  GET_RESET_PASSWORD,
+  setReset,
+  PATCH_RESET_PASSWORD,
 } from 'src/actions/user';
 
 import {
@@ -224,7 +227,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
             store.dispatch(isLoading());
             store.dispatch(redirectionCreate());
           }, 1500);
-
         })
         .catch((error) => {
           console.error(error);
@@ -281,6 +283,47 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.error(error);
+        });
+      next(action);
+      break;
+    }
+
+    case GET_RESET_PASSWORD: {
+      const { token } = action;
+      axios.post('http://localhost:3000/api/reset-password', {
+        token,
+      })
+        .then((response) => {
+          if (response.data.reset) {
+            store.dispatch(setReset(true));
+          }
+        })
+        .catch((error) => {
+          store.dispatch(setReset(false));
+        });
+      next(action);
+      break;
+    }
+
+    case PATCH_RESET_PASSWORD: {
+      const state = store.getState();
+      const { password, passwordConfirm } = state.user;
+      const { token } = action;
+      axios.patch('http://localhost:3000/api/reset-password', {
+        token,
+        password,
+        passwordConfirm,
+      })
+        .then(() => {
+          store.dispatch(isLoading());
+          setTimeout(() => {
+            store.dispatch(isLoading());
+            store.dispatch(redirection());
+          }, 1500);
+        })
+        .catch((error) => {
+          console.error(error);
+          store.dispatch(messageError('Demande de réinitialisation de mot de passe expirée ou invalide.'));
         });
       next(action);
       break;

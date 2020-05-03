@@ -7,6 +7,7 @@ import Home from 'src/containers/Home';
 import Signup from 'src/containers/Signup';
 import Signin from 'src/containers/Signin';
 import Forgotten from 'src/components/Forgotten';
+import ResetPassword from 'src/containers/Forgotten/ResetPassword';
 import Profil from 'src/containers/Profil';
 import DetailActivity from 'src/containers/DetailActivity';
 import CreateActivity from 'src/containers/CreateActivity';
@@ -28,7 +29,6 @@ import {
 } from 'react-router-dom';
 
 import AppStyled from './AppStyled';
-
 
 const App = (
   {
@@ -84,6 +84,7 @@ const App = (
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
         <Route path="/forgotten" exact component={Forgotten} />
+        <Route path="/reset/:token" exact component={ResetPassword} />
         <Route render={() => <p>Page non trouvée !</p>} />
       </Switch>
       <Footer />
