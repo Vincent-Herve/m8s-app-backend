@@ -8,6 +8,7 @@ import Signup from 'src/containers/Signup';
 import Signin from 'src/containers/Signin';
 import Forgotten from 'src/components/Forgotten';
 import ResetPassword from 'src/containers/Forgotten/ResetPassword';
+import VerifyAccount from 'src/containers/VerifyAccount';
 import Profil from 'src/containers/Profil';
 import DetailActivity from 'src/containers/DetailActivity';
 import CreateActivity from 'src/containers/CreateActivity';
@@ -85,6 +86,7 @@ const App = (
         <Route path="/signin" exact component={Signin} />
         <Route path="/forgotten" exact component={Forgotten} />
         <Route path="/reset/:token" exact component={ResetPassword} />
+        <Route path="/verify/:token" exact component={VerifyAccount} />
         <Route render={() => <p>Page non trouvée !</p>} />
       </Switch>
       <Footer />

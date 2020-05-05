@@ -17,6 +17,8 @@ import {
   GET_RESET_PASSWORD,
   setReset,
   PATCH_RESET_PASSWORD,
+  GET_VERIFY_ACCOUNT,
+  setIsVerified,
 } from 'src/actions/user';
 
 import {
@@ -324,6 +326,24 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           console.error(error);
           store.dispatch(messageError('Demande de réinitialisation de mot de passe expirée ou invalide.'));
+        });
+      next(action);
+      break;
+    }
+
+    case GET_VERIFY_ACCOUNT: {
+      const { token } = action;
+      axios.patch('http://localhost:3000/api/verify-account', {
+        token,
+      })
+        .then((response) => {
+
+          if (response.data.isVerified) {
+            store.dispatch(setIsVerified(true));
+          }
+        })
+        .catch((error) => {
+          store.dispatch(setIsVerified(false));
         });
       next(action);
       break;

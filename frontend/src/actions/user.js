@@ -13,7 +13,10 @@ export const DELETE_USER_ACTIVITY = 'DELETE_USER_ACTIVITY';
 export const MESSAGE_ERROR = 'MESSAGE_ERROR';
 export const GET_RESET_PASSWORD = 'GET_RESET_PASSWORD';
 export const PATCH_RESET_PASSWORD = 'PATCH_RESET_PASSWORD';
+export const GET_VERIFY_ACCOUNT = 'GET_VERIFY_ACCOUNT';
 export const SET_RESET = 'SET_RESET';
+export const SET_IS_VERIFIED = 'SET_IS_VERIFIED';
+
 
 // controlled field in component ==> Signup, Signin, EditProfil
 export const changeValue = (value, name) => ({
@@ -95,6 +98,11 @@ export const getResetPassword = (token) => ({
   token,
 });
 
+export const getVerifyAccount = (token) => ({
+  type: GET_VERIFY_ACCOUNT,
+  token,
+});
+
 export const patchResetPassword = (token) => ({
   type: PATCH_RESET_PASSWORD,
   token,
@@ -102,5 +110,10 @@ export const patchResetPassword = (token) => ({
 
 export const setReset = (bool) => ({
   type: SET_RESET,
+  bool,
+});
+
+export const setIsVerified = (bool) => ({
+  type: SET_IS_VERIFIED,
   bool,
 });

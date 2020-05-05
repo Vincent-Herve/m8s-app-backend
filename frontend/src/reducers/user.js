@@ -8,11 +8,13 @@ import {
   DELETE_USER_ACTIVITY,
   MESSAGE_ERROR,
   SET_RESET,
+  SET_IS_VERIFIED,
 } from 'src/actions/user';
 
 export const initialState = {
   redirection: false,
   reset: '',
+  isVerified: '',
   isLoading: false,
   reload: false,
   messageError: '',
@@ -99,6 +101,11 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         reset: action.bool,
+      };
+    case SET_IS_VERIFIED:
+      return {
+        ...state,
+        isVerified: action.bool,
       };
     default:
       return state;
