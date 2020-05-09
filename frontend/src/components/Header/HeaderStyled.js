@@ -4,10 +4,14 @@ import theme from 'src/styles/theme';
 const HeaderStyled = styled.header`
 
 .logo {
-      width: 100%;
-      height: auto;
+      color: white;
+      font-size: 3.5em;
       padding: .5em;
       margin-right: .4em;
+
+      &:hover {
+        color: #ff8800;
+      }
   }
 
 .nav {
@@ -39,14 +43,13 @@ const HeaderStyled = styled.header`
 }
 
     .transparent {
-      background-color: rgba(74, 74, 74, .3);
+      background-color: rgba(74, 74, 74, .6);
   }
 
     a {
       color: #fff;
-      
       font-family: ${theme.fonts.text2};
-      font-size: 1.3em;
+      font-size: 1.4em;
       padding: 0 .6em;
       transition: .4s;
 

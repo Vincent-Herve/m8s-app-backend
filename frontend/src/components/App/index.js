@@ -19,6 +19,7 @@ import EditProfil from 'src/containers/Profil/EditProfil';
 import Activities from 'src/containers/Activities';
 import CardsActivity from 'src/containers/CardsActivity';
 import Contact from 'src/components/Contact';
+import About from 'src/components/About';
 import Notice from 'src/components/Notice';
 import RequireAuthentication from 'src/components/Helpers/RequireAuthentication';
 
@@ -77,6 +78,7 @@ const App = (
         {!isLoading && <Route path="/activity/:slug" exact component={DetailActivity} />}
         <Route path="/editactivity" exact component={EditActivity} />
         <Route path="/contact" exact component={Contact} />
+        <Route path="/about" exact component={About} />
         <Route path="/notices" exact component={Notice} />
         <Route path="/profil" exact component={RequireAuthentication(Profil, isLogged, isLoading)} />
         <Route path="/create" exact component={RequireAuthentication(CreateActivity, isLogged)} />
@@ -84,6 +86,7 @@ const App = (
         <Route path="/unsubscribe" exact component={RequireAuthentication(Unsubscribe, isLogged)} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
+        <Route path="/disconnect" exact render={() => <></>} />
         <Route path="/forgotten" exact component={Forgotten} />
         <Route path="/reset/:token" exact component={ResetPassword} />
         <Route path="/verify/:token" exact component={VerifyAccount} />

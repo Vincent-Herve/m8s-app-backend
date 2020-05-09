@@ -10,7 +10,7 @@ const Menu = ({ isLogged, handleSignout }) => {
   };
   return (
     <Navbar className="nav transparent" fixed="top" expand="lg">
-      <Navbar.Brand href="/"><img src={Logo} alt="logo" className="logo" /></Navbar.Brand>
+      <Navbar.Brand href="/" className="logo">M8S</Navbar.Brand>
       <Navbar.Toggle className="burger" aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">

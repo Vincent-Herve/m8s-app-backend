@@ -9,5 +9,4 @@ export default {
     text: '"Libre Baskerville",  cursive',
     text2: '"Animosa Regular", cursive',
   },
-
 };

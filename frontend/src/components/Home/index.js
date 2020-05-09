@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import CookieConsent from "react-cookie-consent";
 import HomeStyled from './HomeStyled';
 
 const Home = ({ userProfil, isLogged, isLoading }) => {
@@ -17,9 +18,8 @@ const Home = ({ userProfil, isLogged, isLoading }) => {
           <>
             <section>
               <h2>Welcome !</h2>
-              <p>Du sport, de l'énergie à revendre, un esprit d'équipe et de compétition,
-                vous êtes au bon endroit !
-              </p>
+              <p>Vous recherchez une activité sportive près de chez vous ?</p>
+              <p>De l'énergie à revendre, un esprit d'équipe, vous êtes au bon endroit !</p>
             </section>
             <Link className="square_btn" to="/activity">N'attendez plus !</Link>
           </>
@@ -32,6 +32,9 @@ const Home = ({ userProfil, isLogged, isLoading }) => {
           </article>
         )}
       </div>
+      <CookieConsent>
+        Ce site web utilise les cookies pour améliorer votre expérience utilisateur.
+      </CookieConsent>
     </HomeStyled>
   );
 };

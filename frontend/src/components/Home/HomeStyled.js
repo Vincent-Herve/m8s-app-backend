@@ -32,13 +32,14 @@ const HomeStyled = styled.div`
   }
 
   h2 {
-    font-size: 2.7rem;
+    font-size: 2.6rem;
+    margin-bottom: 1.2rem;
   }
 
   p {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.8rem;
-    margin-bottom: 2.3rem;
+    font-size: 1.7rem;
+    margin: 0;
   }
 
   .lien-activity {

@@ -9,11 +9,10 @@ text-align: center;
 position: absolute;
 
 a {
-  margin: 0 10px;
+  padding: 0 1em;
   color: black;
-  font-size: 1.3em;
+  font-size: 1.4em;
   font-family: ${theme.fonts.text2};
-  padding: 1.5em;
 }
 
 @media screen and (max-width: 400px) {
