@@ -14,10 +14,9 @@ const passportLocal = require('./authPassport/local');
 const passportFacebook = require('./authPassport/facebook');
 
 // actions de Activity
+router.use(ActivityController.closeFinishedActivity);
 router.get('/api/activity', ActivityController.getAllActivities);
-router.get('/api/activity/:id', ActivityController.getActivity);
 router.post('/api/activity', ActivityController.createActivity);
-router.post('/api/activity/search', ActivityController.searchActivity);
 router.post('/api/activity/:id/user', ActivityController.associateUserToActivity);
 router.patch('/api/activity/:id', ActivityController.editActivity);
 router.delete('/api/activity/:id', ActivityController.deleteActivity);
@@ -31,19 +30,17 @@ router.post('/api/auth/signin', passportLocal.authenticate('local'), UserControl
 router.post('/api/auth/isLogged',  UserController.isLogged);
 router.post('/api/auth/disconnect', UserController.disconnect);
 router.post('/api/auth/recover', UserController.recover);
-router.get('/reset/:token', UserController.getResetPassword);
-router.post('/reset/:token', UserController.postResetPassword);
+router.post('/api/reset-password', UserController.resetPassword);
+router.patch('/api/reset-password', UserController.patchResetPassword);
+router.post('/api/verify-account', UserController.verifyAccount);
 router.post('/api/contact', UserController.contactUs);
 router.patch('/api/profil/:id', UserController.editProfil);
 router.delete('/api/unsubscribe/:id', UserController.unsubscribe);
-
 
 // actions de Tag
 router.get('/api/tag', TagController.getAllTags);
 router.post('/api/activity/:id/tag', TagController.associateTagToActivity);
 router.delete('/api/activity/:activity_id/tag/:tag_id', TagController.deleteTagFromActivity);
-// router.post('/profil/:id/tag', TagController.associateTagToUser);
-// router.delete('/profil/:user_id/tag/:tag_id', TagController.deleteTagFromUser);
 
 // Export
 module.exports = router;

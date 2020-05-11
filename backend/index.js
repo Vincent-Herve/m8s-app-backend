@@ -6,7 +6,7 @@ dotenv.config();
 const cors = require('cors');
 
 const corsOption = {
-  origin: true,
+  origin: ['http://localhost:3000', 'http://localhost:8080'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   exposedHeaders: ['Origin, X-Requested-With, Content-Type, Accept']
@@ -69,3 +69,5 @@ app.use(router);
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}`);
 });
+
+module.exports = app;

@@ -19,8 +19,11 @@ User.init({
   avatar_url: Sequelize.TEXT,
   email: Sequelize.TEXT,
   password: Sequelize.TEXT,
+  isVerified: Sequelize.BOOLEAN,
   resetPasswordToken: Sequelize.TEXT,
-  resetPasswordExpires: Sequelize.DATE
+  resetPasswordExpires: Sequelize.DATE,
+  sendVerifyToken: Sequelize.TEXT,
+  expiredVerifyToken: Sequelize.DATE
 }, {
   sequelize: db,
   tableName: "user",

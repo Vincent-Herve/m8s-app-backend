@@ -7,7 +7,7 @@ const ActivityController = {
     // route: GET /activity
     getAllActivities: async (request, response) => {
         try {
-            let activities = await Activity.findAll({
+            const activities = await Activity.findAll({
                 // Activity > user ==> tag, Activity > Tag
                 include: [{
                     association: 'users',
@@ -22,27 +22,10 @@ const ActivityController = {
                     attributes: { exclude: ['password'] }
                 }],
                 order: [
-                     ['date', 'DESC']
+                     ['created_at', 'DESC']
                 ],
             });
             response.json(activities);
-        } catch (error) {
-            console.error(error);
-            response.status(500).json(error);
-        }
-    },
-    // route : GET /activity/:id
-    getActivity: async (request, response) => {
-        try {
-            const activityId = request.params.id;
-            // On récupère une seule activité
-            let activity = await Activity.findByPk(activityId);
-            if (activity) {
-                response.json(activity);
-            } else {
-                // pas d'activité pour cet id
-                response.status(404).json(`Cant find activity with this id : ${activityId}`);
-            }
         } catch (error) {
             console.error(error);
             response.status(500).json(error);
@@ -175,50 +158,6 @@ const ActivityController = {
             response.status(500).json(error);
         }
     },
-    // route : POST /activity/search
-    searchActivity: async (request, response) => {
-        try {
-            // Recherche d'activité par tag ou location, ou les deux.
-            const {tag, location} = request.body;
-            console.log('tag ==>',tag,'location==>', location);
-            // On récupère d'abord toute les activités
-            let activities = await Activity.findAll({
-                where: {
-                    location: {
-                        [Op.iLike]: `%${location}%`
-                    }
-                },
-                include: [{
-                    association: 'users',
-                    attributes: ['id', 'username'],
-                    include: ['user_tags']
-                },
-                {
-                    association: 'tags',
-                    where: {
-                        name: {
-                            [Op.iLike]: `%${tag}%`
-                        }           
-                    }
-                },
-                {
-                    association: 'author',
-                    attributes: { exclude: ['password'] }
-                }],
-                order: [
-                    ['created_at'],
-                ],
-            });
-
-            const mappedActivities = activities.map((activity) => (
-                activity.dataValues
-            ));
-            return response.json(activities);
-                 
-        } catch (error) {
-            response.status(500).json(error);
-        }
-    },
     // route : POST /activity/:id/user
     associateUserToActivity: async (request, response) => {
         try {
@@ -292,6 +231,25 @@ const ActivityController = {
             }
         } catch (error) {
             response.status(500).json(error);
+        }
+    },
+    closeFinishedActivity: async (req, res, next) => {
+        try {
+            const activities = await Activity.findAll({
+                where: {
+                    date: {
+                        [Op.lt]: Date.now()
+                    }
+                }
+            }); 
+
+            for (let activity of activities) {
+                await activity.destroy();
+            }
+            
+            next();
+        } catch (error) {
+            res.status(500).json(error);
         }
     }
 };

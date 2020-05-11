@@ -25,49 +25,6 @@ const TagController = {
             response.status(500).json(error);
         }
     },
-    // route : POST /profil/:id/tag
-    associateTagToUser: async (request, response) => {
-        try {
-            const userId = request.params.id;
-            const tagId = request.body.tagId;
-
-            const bodyErrors = [];
-            if (!tagId) {
-                bodyErrors.push(`the tagId parameter is missing`);
-            }
-
-            if (bodyErrors.length) {
-                // si la requête ne contient pas toutes les infos demandées
-                response.status(500).json(bodyErrors);
-            } else {
-
-                let user = await User.findByPk(userId, {
-                    attributes: ['username'],
-                    include: ['user_tags']
-                });
-
-                if (!user) {
-                    response.status(404).json(`Cant find a user with the id ${userId}`);
-                } else {
-
-                    const tag = await Tag.findByPk(tagId);
-
-                    if (!tag) {
-                        response.status(404).json(`Cant find a tag with the id ${tagId}`);
-                    } else {
-                        // console.log(tag);
-                        await user.addTag(tag);
-                        
-                        user.user_tags.push(tag);
-                        
-                        response.json(user);
-                    }
-                }
-            }
-        } catch (error) {
-            response.status(500).json(error);
-        }
-    },
     // route : POST /activity/:id/tag
     associateTagToActivity: async (request, response) => {
         try {
@@ -135,34 +92,7 @@ const TagController = {
         } catch (error) {
             response.status(500).json(error);
         }
-    },
-    // route : DELETE /profil/:user_id/tag/:tag_id
-    deleteTagFromUser: async (request, response) => {
-        try {
-            const userId = request.params.user_id;
-            const tagId = request.params.tag_id;
-
-            const user = await User.findByPk(userId);
-
-            if (!user) {
-                response.status(404).json(`Cant find a user with the id ${userId}`);
-            } else {
-                
-                const tag = await Tag.findByPk(tagId);
-
-                if (!tag) {
-                    response.status(404).json(`Cant find a tag with the id ${tagId}`);
-                } else {
-
-                    await user.removeTag(tag);
-
-                    response.json('Tag supprimé avec succès');
-                }
-            }
-        } catch (error) {
-            response.status(500).json(error);
-        }
-    },
+    }
 };
 
 // Export

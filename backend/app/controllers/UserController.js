@@ -69,20 +69,20 @@ const UserController = {
                 return response.status(401).json('No account with that email address exists.');
             }
 
-            const test = Date.now() + 3600000;
+            const expire = Date.now() + 3600000;
 
             user.resetPasswordToken = token;
-            user.resetPasswordExpires = test;
+            user.resetPasswordExpires = expire;
             
             await user.save();
-            console.log("test ===>", user.resetPasswordExpires, Date.now())
+            
             const mail = {
                 from: 'Admin',
                 to: user.email,
                 subject: 'M8S Password Reset',
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                   'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                  'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+                  req.headers.origin + '/reset/' + token + '\n\n' +
                   'If you did not request this, please ignore this email and your password will remain unchanged.\n'
               };
             
@@ -103,33 +103,33 @@ const UserController = {
             res.status(500).send(error);
         }
     },
-    // route: GET /reset/:token
-    getResetPassword: async (req, res) => {
+    // route: POST /api/reset-password
+    resetPassword: async (req, res) => {
         try {
             const user = await User.findOne({
                 where: {
-                    resetPasswordToken: req.params.token,
+                    resetPasswordToken: req.body.token,
                     resetPasswordExpires: {
                         [Op.gt]: Date.now()
-                      }
+                    }
                 }
             });
-            console.log("test ===>", user.resetPasswordExpires, Date.now())
+            
             if (!user) {
-                return res.status(401).json('Password reset token is invalid or has expired.');
+                return res.status(401).json({ reset: false, info: 'Password reset token is invalid or has expired.' });
             }
 
-            res.render('reset', {token: req.params.token});
+            return res.status(200).json({ reset: true });
         } catch (error) {
             res.status(500).send(error);
         }
     },
-    // route: POST /reset/:token
-    postResetPassword: async (req, res) => {
+    // route: PATCH /api/reset-password
+    patchResetPassword: async (req, res) => {
         try {
             const user = await User.findOne({
                 where: {
-                    resetPasswordToken: req.params.token,
+                    resetPasswordToken: req.body.token,
                     resetPasswordExpires: {
                         [Op.gt]: Date.now()
                       }
@@ -140,7 +140,7 @@ const UserController = {
                 return res.status(401).json('Password reset token is invalid or has expired.');
             }
 
-            if (req.body.password === req.body.confirm) {
+            if (req.body.password === req.body.passwordConfirm) {
                 const encryptedPassword = await bcrypt.hash(
                     req.body.password,
                     10
@@ -180,7 +180,7 @@ const UserController = {
             res.status(500).send(error);
         }
     },
-    // route: POST /signup
+    // route: POST /api/auth/signup
     signup: async (request, response) => {
         try {
             const { username, firstname, lastname, avatar_url, email, password, passwordConfirm } = request.body;
@@ -205,6 +205,10 @@ const UserController = {
                 password,
                 10
             );
+
+            const token = await crypto.randomBytes(32).toString('hex');
+            const expired = await Date.now() + 86400000;
+
             const [user, created] = await User.findOrCreate({
                 where: {
                     email: email
@@ -214,24 +218,76 @@ const UserController = {
                     firstname: firstname,
                     lastname: lastname,
                     avatar_url: avatar_url,
-                    password: encryptedPassword
+                    password: encryptedPassword,
+                    sendVerifyToken: token,
+                    expiredVerifyToken: expired
                 }
             });
+            
             if (!created) {
                 return response.status(401).json(`Compte déjà existant`);
-
-            } else {
-                return response.status(200).json('Votre compte a été créé avec succès');
+            } 
+            
+            else {
+                const mail = {
+                    from: 'Admin',
+                    to: email,
+                    subject: 'M8S - Vérification de votre email',
+                    text: 'Bonjour, pour compléter le processus d\'inscription, veuillez cliquer sur le lien suivant pour vérifier votre email.\n\n' +
+                      request.headers.origin + '/verify/' + token + '\n\n' +
+                      'Si vous n\'êtes pas à l\'origine de cette demande, nous vous prions d\'ignore cette email et votre mot de passe restera inchangé.\n'
+                  };
+                
+                // Envoie du mail
+                await transporter.sendMail(mail, (err, data) => {
+                    if (err) {
+                        response.json({
+                        status: 'fail'
+                        })
+                    } else {
+                        response.json({
+                        status: 'success'
+                        // info:'Votre compte a été créé avec succès et un email de vérification vous a été envoyé.'
+                        })
+                    }
+                });
             }
         } catch (error) {
             response.status(500).send(error);
         }
 
     },
-    // route: PATCH /profil/:id
-    editProfil: async (request, response) => {
+    // route: PATCH /api/verify-account
+    verifyAccount: async (req, res) => {
         try {
+            const user = await User.findOne({
+                where: {
+                    sendVerifyToken: req.body.token,
+                    isVerified: false,
+                    expiredVerifyToken: {
+                        [Op.gt]: Date.now()
+                      }
+                }
+            });
             
+            if (!user) {
+                return res.status(401).json({ isVerified: false, info: 'Verify token is invalid or has expired.' });
+            }
+
+            user.sendVerifyToken = null;
+            user.expiredVerifyToken = null;
+            user.isVerified = true;
+
+            await user.save();
+            return res.status(200).json({ isVerified: true });
+
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    },
+    // route: PATCH /api/profil/:id
+    editProfil: async (request, response) => {
+        try {   
             const userId = request.params.id;
             
             // On récupère l'user associé à l'id de la requête, puis on le modifie
