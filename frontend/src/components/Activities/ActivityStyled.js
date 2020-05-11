@@ -3,15 +3,14 @@ import styled from 'styled-components';
 const ActivityStyled = styled.div`
    padding: 2.2rem 1em;
    margin: 2rem;
-   border-radius: 3px;
    width: 28%;
-   box-shadow: 1px 0px 7px -2px #000000;
+   box-shadow: 1px 0px 6px -2px #000000;
    background-color: #f1f1f1;
    transition: .3s ease-in-out;
    position: relative;
 
    &:hover {
-    transform: scale(1.1);
+    transform: scale(1.03);
    }
 
    .content-closed {

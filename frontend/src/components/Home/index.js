@@ -25,11 +25,13 @@ const Home = ({ userProfil, isLogged, isLoading }) => {
           </>
         )}
         {isLogged && (
-          <article>
-            <h2>Welcome {userProfil.username}</h2>
-            <p>C'est parti pour un peu de sport !!</p>
+          <>
+            <article>
+              <h2>Welcome {userProfil.username}</h2>
+              <p>C'est parti pour un peu de sport !!</p>
+            </article>
             <Link className="square_btn" to="/create">Crée ta propre activité !</Link>
-          </article>
+          </>
         )}
       </div>
       <CookieConsent>

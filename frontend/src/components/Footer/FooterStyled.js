@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import theme from 'src/styles/theme';
 
 const FooterStyled = styled.footer`
-background-color: #D3D3D3;
+background-color: #999999;
 padding: 2em 0;
 width: 100%;
 text-align: center;

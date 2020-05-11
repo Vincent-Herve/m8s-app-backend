@@ -4,7 +4,7 @@ import theme from 'src/styles/theme';
 const HeaderStyled = styled.header`
 
 .logo {
-      color: white;
+      color: #ff8800;
       font-size: 3.5em;
       padding: .5em;
       margin-right: .4em;
@@ -43,7 +43,7 @@ const HeaderStyled = styled.header`
 }
 
     .transparent {
-      background-color: rgba(74, 74, 74, .6);
+      background-color: rgba(78, 78, 78, .6);
   }
 
     a {

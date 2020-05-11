@@ -333,7 +333,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
 
     case GET_VERIFY_ACCOUNT: {
       const { token } = action;
-      axios.patch('http://localhost:3000/api/verify-account', {
+      axios.post('http://localhost:3000/api/verify-account', {
         token,
       })
         .then((response) => {

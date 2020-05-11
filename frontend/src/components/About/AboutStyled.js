@@ -7,6 +7,7 @@ const AboutStyled = styled.div`
 
     h1 {
       padding-bottom: 1.8rem;
+      color: #ff8800;
     }
 
     h2 {
