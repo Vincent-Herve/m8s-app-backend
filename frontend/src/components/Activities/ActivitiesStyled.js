@@ -14,11 +14,11 @@ color: black;
 }
 
 h1 {
-  font-family: ${theme.fonts.text2};
+  font-family: ${theme.fonts.title};
   color: #ff8800;
   text-align: center;
   margin-bottom: 1em;
-  font-size: 2.5em;
+  font-size: 2.4rem;
 }
 
 .cards {

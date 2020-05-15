@@ -1,6 +1,7 @@
 const paths = require('./paths');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const fs = require('fs');
 const common = require('./webpack.common.js');
 
 const port = 8080;

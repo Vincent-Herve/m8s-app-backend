@@ -43,7 +43,7 @@ const HeaderStyled = styled.header`
 }
 
     .transparent {
-      background-color: rgba(78, 78, 78, .6);
+      background-color: rgba(78, 78, 78, .7);
   }
 
     a {

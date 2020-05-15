@@ -93,26 +93,31 @@ export const messageError = (message) => ({
   message,
 });
 
+// action ajaxMiddleware getResetPassword
 export const getResetPassword = (token) => ({
   type: GET_RESET_PASSWORD,
   token,
 });
 
+// action ajaxMiddleware getVerifyAccount
 export const getVerifyAccount = (token) => ({
   type: GET_VERIFY_ACCOUNT,
   token,
 });
 
+// action ajaxMiddleware patchResetPassword
 export const patchResetPassword = (token) => ({
   type: PATCH_RESET_PASSWORD,
   token,
 });
 
+// action reducer/user setReset
 export const setReset = (bool) => ({
   type: SET_RESET,
   bool,
 });
 
+// action reducer/user setIsVerified
 export const setIsVerified = (bool) => ({
   type: SET_IS_VERIFIED,
   bool,

@@ -1,12 +1,14 @@
 export default {
   colors: {
-    primary: '#74b9ff',
-    secondary: '#0984e3',
+    primary: '#ff8800',
+    secondary: '#4a4a4a',
   },
   fonts: {
-    appli: '"Crimson Text", serif',
-    title: '"Dancing Script", serif',
-    text: '"Libre Baskerville",  cursive',
-    text2: '"Animosa Regular", cursive',
+    title: '"Animosa Regular", cursive',
+    text: '"Jaldi", sans serif',
+  },
+  size: {
+    title: '2.4rem',
+    text: '1.1rem',
   },
 };

@@ -19,27 +19,28 @@ const HomeStyled = styled.div`
     flex-direction: column;
     justify-content: space-around;
     color: white;
-  }
+    font-weight: bold;
 
-  h1 {
-    font-size: 8em;
-    color: white;
-    font-family: ${theme.fonts.text2};
+      h1 {
+          font-size: 8em;
+          color: white;
+          font-family: ${theme.fonts.text2};
+        }
+
+      h2 {
+          font-size: 2.6rem;
+          margin-bottom: 1.2rem;
+          font-weight: bold;
+        }
+
+        p {
+          font-size: 1.7em;
+          margin: 0;
+        }
   }
 
   .subtitle {
     font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 2.6rem;
-    margin-bottom: 1.2rem;
-  }
-
-  p {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.7rem;
-    margin: 0;
   }
 
   .lien-activity {

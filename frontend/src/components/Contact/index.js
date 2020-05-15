@@ -5,8 +5,9 @@ import axios from 'axios';
 import ContactStyled from './ContactStyled';
 import Logo from './Logo.svg';
 
-const Contact = () => {
+const Contact = (props) => {
   // state controlled field
+  console.log(props)
   const [valueForm, setValueForm] = useState({ name: '', email: '', message: '' });
 
   const handleSubmitForm = (evt) => {
