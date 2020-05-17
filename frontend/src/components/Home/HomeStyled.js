@@ -22,10 +22,9 @@ const HomeStyled = styled.div`
     font-weight: bold;
 
       h1 {
-          font-size: 8em;
-          color: white;
-          font-family: ${theme.fonts.text2};
-        }
+        font-size: 8em;
+        color: white;
+      }
 
       h2 {
           font-size: 2.6rem;
@@ -34,7 +33,7 @@ const HomeStyled = styled.div`
         }
 
         p {
-          font-size: 1.7em;
+          font-size: 1.6em;
           margin: 0;
         }
   }

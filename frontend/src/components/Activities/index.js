@@ -16,7 +16,9 @@ const Activities = ({
     <h1>Les activités disponibles</h1>
     <div className="contain">
       {isLogged && (
-        <Link to="/create" className="link-activity">Créer votre activité <Icon /></Link>
+        <div className="div-link">
+          <Link to="/create" className="link-activity">Créer votre activité <Icon /></Link>
+        </div>
       )}
       <div className="cards">
         {activities.map((activity) => (
@@ -33,7 +35,9 @@ const Activities = ({
         ))}
       </div>
       {isLogged && (
-        <Link to="/create" className="link-activity">Créer votre activité <Icon /></Link>
+        <div className="div-link">
+          <Link to="/create" className="link-activity">Créer votre activité <Icon /></Link>
+        </div>
       )}
     </div>
   </ActivitiesStyled>

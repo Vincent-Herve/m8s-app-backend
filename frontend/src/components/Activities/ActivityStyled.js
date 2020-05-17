@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const ActivityStyled = styled.div`
    padding: 2.2rem 1em;
    margin: 2rem;
-   width: 28%;
+   width: 25%;
    box-shadow: 1px 0px 6px -2px #000000;
    background-color: #f1f1f1;
    transition: .3s ease-in-out;
@@ -57,38 +57,38 @@ const ActivityStyled = styled.div`
 
   .register {
     text-decoration: none;
-    border: solid 1.4px #DE8400;
+    border: solid 1.4px #ff8800;
     padding: .8em;
     color: white;
-    background-color: #DE8400;
+    background-color: #ff8800;
     font-weight: bold;
     transition: .3s ease-in-out;
 
     &:hover {
       text-decoration: none;
-      border: solid 1.4px #DE8400;
+      border: solid 1.4px #ff8800;
       padding: .8em;
-      color: #DE8400;
-      background-color: #f4cba8;
+      color: #ff8800;
+      background-color: white;
       font-weight: bold;
     }
   }
 
   .delete {
     text-decoration: none;
-    border: solid 1.4px #DE8400;
+    border: solid 1.4px #ff8800;
     padding: .8em;
     color: white;
-    background-color: #DE8400;
+    background-color: #ff8800;
     font-weight: bold;
     transition: .3s ease-in-out;
 
     &:hover {
       text-decoration: none;
-      border: solid 1.4px #DE8400;
+      border: solid 1.4px #ff8800;
       padding: .8em;
-      color: #DE8400;
-      background-color: #f4cba8;
+      color: #ff8800;
+      background-color: white;
       font-weight: bold;
   }
   }
@@ -105,15 +105,60 @@ const ActivityStyled = styled.div`
     padding-left: 1em;
   }
 
-  .underline {
-    text-decoration: underline;
+  .bold {
+    font-weight: bold;
   }
 
-@media screen and (max-width: 450px) {
-  width: 100%;
-}
+  .message {
+    padding-top: .6em;
+  }
 
+  @media screen and (max-width: 770px) {
+    width: 70%;
+    padding: 1rem .8em;
+    margin: 2rem;
+    box-shadow: 1px 0px 6px -2px #000000;
+    background-color: #f1f1f1;
+    transition: .3s ease-in-out;
+    position: relative;
+
+    .register {
+      text-decoration: none;
+      padding: .7em;
+      color: white;
+      background-color: #ff8800;
+      font-weight: bold;
+      transition: .3s ease-in-out;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+    padding: 1rem .8em;
+    margin: 2rem;
+    box-shadow: 1px 0px 6px -2px #000000;
+    background-color: #f1f1f1;
+    transition: .3s ease-in-out;
+    position: relative;
+
+    .div-link {
+      text-align: center;
+      padding-top: .4em;
+    }
+
+    .register {
+      text-decoration: none;
+      padding: .6em;
+      color: white;
+      background-color: #ff8800;
+      font-weight: bold;
+      transition: .3s ease-in-out;
+    }
+
+    .message {
+      text-align: center;
+    }
+  }
 `;
 
 export default ActivityStyled;
-

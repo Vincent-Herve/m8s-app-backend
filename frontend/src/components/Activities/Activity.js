@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getUrlByActivityTitle } from 'src/selectors/Activities';
@@ -35,6 +35,9 @@ const Activity = (
     // eslint-disable-next-line comma-dangle
   }
 ) => {
+  useEffect(() => {
+    document.title = 'Activités';
+  }, []);
   // state message register or left activity
   const [message, setMessage] = useState('');
 
@@ -61,39 +64,41 @@ const Activity = (
   // eslint-disable-next-line no-unneeded-ternary
   const authorActivity = (user_id === userProfilId ? true : false);
 
+  const regex = /(\w+)-(\w+)-(\w+)/;
+
   return (
     <ActivityStyled>
       <div className={users.length >= free_place ? 'content-closed' : 'content'}>
         <h2 className="content-title">{title}</h2>
-        <h3>Membres inscrit a l'activité :</h3>
-        <div className="content-user">
-          {users.map((user) => (
-            <p key={user.username} className="content-name">{user.username}</p>
-          ))}
-        </div>
         {tags.map((tag) => (
           <p key={tag.name} className="content-tag">{tag.name}</p>
         ))}
-        <p key={description} className="content-description"><span className="underline">Description</span>: {description}</p>
-        <p key={free_place} className="content-text">{users.length}/{free_place}</p>
-        <p key={location} className="content-text"><span className="underline">Lieu</span>: {location}</p>
-        <p key={date} className="content-text"><span className="underline">Date</span>: {date}</p>
-        <p key={hour} className="content-text"><span className="underline">Heure</span>: {hour}</p>
+        <p key={description} className="content-description"><span className="bold">Description</span>: {description}</p>
+        <p key={free_place} className="content-text"><span className="bold">Membre(s) inscrit(s) / Places max</span>: {users.length} / {free_place}</p>
+        <p key={location} className="content-text"><span className="bold">Lieu</span>: {location}</p>
+        <p key={date} className="content-text"><span className="bold">Date</span>: {date.replace(regex, '$3-$2-$1')}</p>
+        <p key={hour} className="content-text"><span className="bold">Heure</span>: {hour}</p>
         <div className="content-link">
           <Link className="content-view-link" to={getUrlByActivityTitle(title)}>Voir l'activité</Link>
         </div>
         {!isLogged && (
-          <Link className="register" to="/signin">
-            Se connecter pour y participer
-          </Link>
+          <div className="div-link">
+            <Link className="register" to="/signin">
+              Se connecter pour y participer
+            </Link>
+          </div>
         )}
         {memberActivityNotReserved && (
-          <button type="button" className="register" onClick={handleRegisterClick}>
-            Y participer !
-          </button>
+          <div className="div-link">
+            <button type="button" className="register" onClick={handleRegisterClick}>
+              Y participer !
+            </button>
+          </div>
         )}
         {memberActivityReserved && (
-          <button type="button" className="delete" onClick={handleDeleteClick}>Se désinscrire</button>
+          <div className="div-link">
+            <button type="button" className="delete" onClick={handleDeleteClick}>Se désinscrire</button>
+          </div>
         )}
         {authorActivity && (
           <>
@@ -121,7 +126,7 @@ const Activity = (
             </Link>
           </>
         )}
-        <p>{message}</p>
+        <p className="message">{message}</p>
       </div>
     </ActivityStyled>
   );
