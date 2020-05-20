@@ -1,7 +1,6 @@
-import { expect } from 'chai';
-
-import activities, { initialState } from 'src/reducers/activities';
-import { saveActivities } from 'src/actions/user';
+const { expect } = require('chai');
+const activities = require('src/reducers/activities');
+const { initialState } = require('src/reducers/activities');
 
 describe.only('Activities reducer', () => {
   describe('structure', () => {

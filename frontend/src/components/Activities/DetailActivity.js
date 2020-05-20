@@ -1,5 +1,5 @@
 /* eslint-disable no-alert */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { IoIosPeople, IoMdCreate } from 'react-icons/io';
@@ -23,11 +23,18 @@ const DetailActivity = (
     tagList,
   },
 ) => {
+  useEffect(() => {
+    document.title = activity.title;
+  }, []);
+
   const [message, setMessage] = useState('');
 
+  const authorActivity = (activity.user_id === userProfilId);
+
   const memberActivity = activity.users.filter((user) => user.id === userProfilId);
-  const memberActivityReserved = (memberActivity.length && isLogged ? true : false);
-  const memberActivityNotReserved = (isLogged && (memberActivityReserved === false) ? true : false);
+  const memberActivityReserved = (!!(memberActivity.length && isLogged && !authorActivity));
+  const memberActivityNotReserved = (!!(isLogged
+    && (memberActivityReserved === false) && !authorActivity));
 
 
   const handleRegisterClick = () => {
@@ -45,29 +52,33 @@ const DetailActivity = (
     setMessage('Vous êtes désinscrit de cette activité');
   };
 
-  const authorActivity = (activity.user_id === userProfilId ? true : false);
+  const regex = /(\w+)-(\w+)-(\w+)/;
 
   return (
     <DetailActivityStyled>
       <div className="content">
         <h2 className="content-title">{activity.title}</h2>
-        <h3>Liste des membres inscrit a l'activité</h3>
-        {activity.users.map((user) => (
-          <p key={user.username} className="content-username">{user.username}</p>
-        ))}
+        <h3>Liste des membres inscrit à l'activité</h3>
+        <ul className="user-list">
+          {activity.users.map((user) => (
+            <li key={user.username} className="content-username">{user.username} </li>
+          ))}
+        </ul>
         {activity.tags.map((tag) => (
           <p key={tag.name} className="content-tag">{tag.name}</p>
         ))}
-        <p key={activity.description} className="content-description"><span className="underline">Description</span>: {activity.description}</p>
-        <p key={activity.free_place} className="content-free-place"><span className="underline">place libre</span>: {activity.free_place}</p>
-        <p key={activity.location} className="content-lieu"><span className="underline">Lieu</span>: {activity.location}</p>
-        <p key={activity.date} className="content-date"><span className="underline">Date</span>: {activity.date}</p>
-        <p key={activity.hour} className="content-heure"><span className="underline">Heure</span>: {activity.hour}</p>
+        <p key={activity.description} className="content-description"><span className="bold">Description</span>: {activity.description}</p>
+        <p key={activity.free_place} className="content-free-place"><span className="bold">Membre(s) inscrit(s) / Places max</span>: {activity.users.length} / {activity.free_place}</p>
+        <p key={activity.location} className="content-lieu"><span className="bold">Lieu</span>: {activity.location}</p>
+        <p key={activity.date} className="content-date"><span className="bold">Date</span>: {activity.date.replace(regex, '$3-$2-$1')}</p>
+        <p key={activity.hour} className="content-heure"><span className="bold">Heure</span>: {activity.hour}</p>
 
         {!isLogged && (
-          <Link className="link" to="/signin">
-            Se connecter pour y participer
-          </Link>
+          <div className="div-link">
+            <Link className="register" to="/signin">
+              Se connecter pour y participer
+            </Link>
+          </div>
         )}
         {memberActivityNotReserved && (
           <button type="button" className="register" onClick={handleRegisterClick}>
@@ -95,7 +106,7 @@ const DetailActivity = (
                     date: activity.date,
                     hour: activity.hour,
                     tagList,
-                    currentTag: activity.tags[0].id
+                    currentTag: activity.tags[0].id,
                   },
                 }
               }
@@ -103,7 +114,7 @@ const DetailActivity = (
             </Link>
           </>
         )}
-        <p>{message}</p>
+        <p className="message">{message}</p>
       </div>
     </DetailActivityStyled>
   );

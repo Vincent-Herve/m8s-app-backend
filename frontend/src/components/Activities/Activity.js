@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getUrlByActivityTitle } from 'src/selectors/Activities';
@@ -35,15 +35,16 @@ const Activity = (
     // eslint-disable-next-line comma-dangle
   }
 ) => {
-  useEffect(() => {
-    document.title = 'Activités';
-  }, []);
   // state message register or left activity
   const [message, setMessage] = useState('');
 
+  // eslint-disable-next-line no-unneeded-ternary
+  const authorActivity = (user_id === userProfilId ? true : false);
+
   const memberActivity = users.filter((user) => user.id === userProfilId);
-  const memberActivityReserved = (!!(memberActivity.length && isLogged));
-  const memberActivityNotReserved = (!!(isLogged && (memberActivityReserved === false)));
+  const memberActivityReserved = (!!(memberActivity.length && isLogged && !authorActivity));
+  const memberActivityNotReserved = (!!(isLogged
+    && (memberActivityReserved === false) && !authorActivity));
 
   const handleRegisterClick = () => {
     if (users.length >= free_place) {
@@ -60,9 +61,6 @@ const Activity = (
     leftActivity(id, userProfilId);
     setMessage('Vous êtes désinscrit de cette activité');
   };
-
-  // eslint-disable-next-line no-unneeded-ternary
-  const authorActivity = (user_id === userProfilId ? true : false);
 
   const regex = /(\w+)-(\w+)-(\w+)/;
 

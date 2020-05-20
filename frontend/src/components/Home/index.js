@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import CookieConsent from "react-cookie-consent";
+import CookieConsent from 'react-cookie-consent';
 import HomeStyled from './HomeStyled';
 
 const Home = ({ userProfil, isLogged, isLoading }) => {
+  useEffect(() => {
+    document.title = 'Accueil - M8S';
+  }, []);
 
   if (isLoading) {
     return (<div className="style-loading"><p>Veuillez patienter</p></div>);

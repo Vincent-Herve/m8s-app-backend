@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ClipLoader from 'react-spinners/ClipLoader';
 import CreateActivityStyled from './CreateActivityStyled';
@@ -19,6 +19,10 @@ const CreateActivity = ({
   changeField,
   changeTag,
 }) => {
+  useEffect(() => {
+    document.title = 'Création d\'activité';
+  }, []);
+
   const [message, setMessage] = useState('');
 
   const handleSubmit = (evt) => {
@@ -40,9 +44,7 @@ const CreateActivity = ({
   return (
     <CreateActivityStyled>
       <section>
-
         <h1>Créaction d'activité</h1>
-
         <form className="login-form-element" onSubmit={handleSubmit}>
           <Field
             name="title"

@@ -1,42 +1,43 @@
 import styled from 'styled-components';
+import theme from 'src/styles/theme';
 
 const ActivityStyled = styled.div`
-   padding: 2.2rem 1em;
-   margin: 2rem;
-   width: 25%;
-   box-shadow: 1px 0px 6px -2px #000000;
-   background-color: #f1f1f1;
-   transition: .3s ease-in-out;
-   position: relative;
+  padding: 2.2rem 1em;
+  margin: 2rem;
+  width: 25%;
+  box-shadow: 1px 0px 6px -2px #000000;
+  background-color: #f1f1f1;
+  transition: .3s ease-in-out;
+  position: relative;
 
-   &:hover {
-    transform: scale(1.03);
-   }
+  &:hover {
+  transform: scale(1.03);
+  }
 
-   .content-closed {
-     opacity: 0.4;
-   }
+  .content-closed {
+    opacity: 0.4;
+  }
 
-   .content-title {
-    padding-bottom: .6em;
-    border-bottom: solid 2px black;
-   }
+  .content-title {
+  padding-bottom: .6em;
+  border-bottom: solid 2px black;
+  }
 
-   .content-user {
-     border-bottom: solid 1.2px black;
-     padding-bottom: 1em;
-   }
+  .content-user {
+    border-bottom: solid 1.2px black;
+    padding-bottom: 1em;
+  }
 
-   .content-name {
-    display: inline;
-    margin: .6em .6em;
-   }
+  .content-name {
+  display: inline;
+  margin: .6em .6em;
+  }
 
-   .content-tag {
-    padding-top: 1.4em;
-    font-weight: bold;
-    color: #DE8400;
-   }
+  .content-tag {
+  padding-top: 1.4em;
+  font-weight: bold;
+  color: ${theme.colors.primary};
+  }
 
   h3 {
     font-size: 1.5rem;
@@ -57,18 +58,18 @@ const ActivityStyled = styled.div`
 
   .register {
     text-decoration: none;
-    border: solid 1.4px #ff8800;
+    border: solid 1.4px ${theme.colors.primary};
     padding: .8em;
     color: white;
-    background-color: #ff8800;
+    background-color: ${theme.colors.primary};
     font-weight: bold;
     transition: .3s ease-in-out;
 
     &:hover {
       text-decoration: none;
-      border: solid 1.4px #ff8800;
+      border: solid 1.4px ${theme.colors.primary};
       padding: .8em;
-      color: #ff8800;
+      color: ${theme.colors.primary};
       background-color: white;
       font-weight: bold;
     }
@@ -76,18 +77,18 @@ const ActivityStyled = styled.div`
 
   .delete {
     text-decoration: none;
-    border: solid 1.4px #ff8800;
+    border: solid 1.4px ${theme.colors.primary};
     padding: .8em;
     color: white;
-    background-color: #ff8800;
+    background-color: ${theme.colors.primary};
     font-weight: bold;
     transition: .3s ease-in-out;
 
     &:hover {
       text-decoration: none;
-      border: solid 1.4px #ff8800;
+      border: solid 1.4px ${theme.colors.primary};
       padding: .8em;
-      color: #ff8800;
+      color: ${theme.colors.primary};
       background-color: white;
       font-weight: bold;
   }
@@ -103,6 +104,7 @@ const ActivityStyled = styled.div`
     text-decoration: none;
     color: black;
     padding-left: 1em;
+    font-size: 1.5em;
   }
 
   .bold {
@@ -126,7 +128,7 @@ const ActivityStyled = styled.div`
       text-decoration: none;
       padding: .7em;
       color: white;
-      background-color: #ff8800;
+      background-color: ${theme.colors.primary};
       font-weight: bold;
       transition: .3s ease-in-out;
     }
@@ -150,7 +152,7 @@ const ActivityStyled = styled.div`
       text-decoration: none;
       padding: .6em;
       color: white;
-      background-color: #ff8800;
+      background-color: ${theme.colors.primary};
       font-weight: bold;
       transition: .3s ease-in-out;
     }

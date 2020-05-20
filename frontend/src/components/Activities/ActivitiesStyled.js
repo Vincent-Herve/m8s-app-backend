@@ -14,7 +14,7 @@ const ActivitiesStyled = styled.div`
 
   h1 {
     font-family: ${theme.fonts.title};
-    color: #ff8800;
+    color: ${theme.colors.primary};
     text-align: center;
     margin-bottom: 1em;
     font-size: 2.4rem;
@@ -23,8 +23,9 @@ const ActivitiesStyled = styled.div`
   .cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 2em 0;
+    justify-content: space-between;
+    max-width: 1500px;
+    margin: 2em auto;
   }
 
 
@@ -37,7 +38,12 @@ const ActivitiesStyled = styled.div`
   }
 
   @media screen and (max-width: 770px) {
-
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin: 2em auto;
+    }
   }
 
   @media screen and (max-width: 450px) {

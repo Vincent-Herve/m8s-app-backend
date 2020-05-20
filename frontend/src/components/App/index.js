@@ -22,6 +22,7 @@ import Contact from 'src/components/Contact';
 import About from 'src/components/About';
 import Notice from 'src/components/Notice';
 import RequireAuthentication from 'src/components/Helpers/RequireAuthentication';
+import NotFound from 'src/components/NotFound';
 
 import {
   Route,
@@ -90,7 +91,7 @@ const App = (
         <Route path="/forgotten" exact component={Forgotten} />
         <Route path="/reset/:token" exact component={ResetPassword} />
         <Route path="/verify/:token" exact component={VerifyAccount} />
-        <Route render={() => <p>Page non trouvée !</p>} />
+        <Route render={() => <NotFound />} />
       </Switch>
       <Footer />
     </AppStyled>

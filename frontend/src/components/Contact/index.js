@@ -1,13 +1,14 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ContactStyled from './ContactStyled';
-import Logo from './Logo.svg';
 
 const Contact = (props) => {
+  useEffect(() => {
+    document.title = 'Contact';
+  }, []);
   // state controlled field
-  console.log(props)
   const [valueForm, setValueForm] = useState({ name: '', email: '', message: '' });
 
   const handleSubmitForm = (evt) => {
@@ -43,6 +44,10 @@ const Contact = (props) => {
     setValueForm({ ...valueForm, message: evt.target.value });
   };
 
+  const pseudo = 'Pseudo';
+  const email = 'Email';
+  const description = 'Description';
+
   return (
     <ContactStyled>
       <main className="main">
@@ -51,15 +56,22 @@ const Contact = (props) => {
           nous vous répondrons dans les plus brefs délais !
         </p>
         <form className="form" onSubmit={handleSubmitForm}>
-          <p>Pseudo : </p>
-          <input type="text" value={valueForm.name} onChange={onNameChange} placeholder="Pseudo" />
-          <p>Email :</p>
-          <input type="text" value={valueForm.email} onChange={onEmailChange} placeholder="Email" />
-          <p>Description :</p>
-          <textarea row="10" cols="40" value={valueForm.message} onChange={onMessageChange} placeholder="Décrivez votre demande" />
-          <button className="input" type="submit">Envoyer</button>
+          <div>
+            <label htmlFor="pseudo">{pseudo} :</label>
+            <input type="text" id="pseudo" value={valueForm.name} onChange={onNameChange} placeholder={pseudo} />
+          </div>
+          <div>
+            <label htmlFor="email">{email} :</label>
+            <input type="text" id="email" value={valueForm.email} onChange={onEmailChange} placeholder={email} />
+          </div>
+          <label htmlFor="description">{description} :</label>
+          <div>
+            <textarea row="10" cols="40" id="description" value={valueForm.message} onChange={onMessageChange} placeholder={description} />
+          </div>
+          <div>
+            <button className="input" type="submit">Envoyer</button>
+          </div>
         </form>
-        <img src={Logo} alt="logo" className="logo" />
       </main>
     </ContactStyled>
   );

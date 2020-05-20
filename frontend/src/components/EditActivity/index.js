@@ -2,7 +2,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable camelcase */
 /* eslint-disable prefer-destructuring */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import {
@@ -11,6 +11,10 @@ import {
 import EditActivityStyled from './EditActivityStyled';
 
 const EditActivity = (props) => {
+  useEffect(() => {
+    document.title = 'Modification d\'activité';
+  }, []);
+
   const [redirect, setRedirect] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -84,29 +88,51 @@ const EditActivity = (props) => {
         });
     }
   };
+  const titleLabel = 'Titre';
+  const descriptionLabel = 'Description';
+  const free_placeLabel = 'Places disponibles';
+  const locationLabel = 'Lieu';
+  const dateLabel = 'Date';
+  const hourLabel = 'Heure';
+  const tagLabel = 'Tag';
+
   return (
     <EditActivityStyled>
       <div className="contain">
         {redirect && <Redirect to="/activity" />}
         <form onSubmit={handleSubmit}>
-          <p>Titre : </p>
-          <input type="text" defaultValue={props.location.state.title} name="title" placeholder="Titre" />
-          <p>Description :</p>
-          <input type="text" defaultValue={props.location.state.description} name="description" placeholder="Description" />
-          <p>Places disponibles :</p>
-          <input name="free_place" defaultValue={props.location.state.free_place} type="number" placeholder="Places disponibles" />
-          <p>Lieu : </p>
-          <input type="text" defaultValue={props.location.state.location} name="location" placeholder="Location" />
-          <p>Date :</p>
-          <input type="date" defaultValue={props.location.state.date} name="date" />
-          <p>Heure :</p>
-          <input type="time" defaultValue={props.location.state.hour} name="hour" />
-          <p>Tag :</p>
-          <select name="tagId" id="chooseTag">
-            {props.location.state.tagList.map((tag) => (
-              <option key={tag.id} value={tag.id}>{tag.name}</option>
-            ))}
-          </select>
+          <div>
+            <label htmlFor="name">{titleLabel} :</label>
+            <input type="text" defaultValue={props.location.state.title} id="name" name="title" placeholder={titleLabel} />
+          </div>
+          <div>
+            <label htmlFor="description">{descriptionLabel} :</label>
+            <input type="text" defaultValue={props.location.state.description} id="description" name="description" placeholder={descriptionLabel} />
+          </div>
+          <div>
+            <label htmlFor="free_place">{free_placeLabel} :</label>
+            <input name="free_place" defaultValue={props.location.state.free_place} id="free_place" type="number" placeholder={free_placeLabel} />
+          </div>
+          <div>
+            <label htmlFor="location">{locationLabel} :</label>
+            <input type="text" defaultValue={props.location.state.location} id="location" name="location" placeholder={locationLabel} />
+          </div>
+          <div>
+            <label htmlFor="date">{dateLabel} :</label>
+            <input type="date" defaultValue={props.location.state.date} id="date" name="date" />
+          </div>
+          <div>
+            <label htmlFor="hour">{hourLabel} :</label>
+            <input type="time" defaultValue={props.location.state.hour} id="hour" name="hour" />
+          </div>
+          <div>
+            <label htmlFor="chooseTag">{tagLabel} :</label>
+            <select name="tagId" id="chooseTag">
+              {props.location.state.tagList.map((tag) => (
+                <option key={tag.id} value={tag.id}>{tag.name}</option>
+              ))}
+            </select>
+          </div>
           <div>
             <button type="submit">Valider</button>
           </div>

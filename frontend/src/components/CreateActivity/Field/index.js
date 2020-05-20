@@ -19,6 +19,12 @@ const Field = ({
   return (
     <FieldStyled>
       <div>
+        <label
+          htmlFor={inputId}
+          className="field-label"
+        >
+          {placeholder} :
+        </label>
         <input
           value={value}
           onChange={handleChange}
