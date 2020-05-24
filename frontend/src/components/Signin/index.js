@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ClipLoader from 'react-spinners/ClipLoader';
@@ -16,6 +16,9 @@ const Signin = ({
   messageError,
   setMessageError,
 }) => {
+  useEffect(() => {
+    document.title = 'Se connecter';
+  }, []);
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (email !== '' && password !== '') {
@@ -58,10 +61,12 @@ const Signin = ({
           color="orange"
           loading={isLoading}
         />
+        <button type="button" className="loginBtn loginBtn--facebook">
+          <a href="http://localhost:3000/auth/facebook">Login Facebook</a>
+        </button>
         <div className="contain-links">
           <Link className="links" to="/forgotten">Mot de passe oublié</Link>
         </div>
-        <a href="http://localhost:3000/auth/facebook">Login Facebook</a>
       </section>
     </SigninStyled>
   );

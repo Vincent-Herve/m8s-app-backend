@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from 'src/styles/theme';
 
 const ProfilStyled = styled.main`
   padding-top: 10em;
@@ -84,6 +85,12 @@ const ProfilStyled = styled.main`
   .content-title {
     padding-bottom: .6em;
     border-bottom: solid 2px black;
+  }
+
+  .content-tag {
+    padding-top: 1.4em;
+    font-weight: bold;
+    color: ${theme.colors.primary};
   }
 
   h3 {

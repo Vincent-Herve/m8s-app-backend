@@ -19,8 +19,8 @@ const ActivityStyled = styled.div`
   }
 
   .content-title {
-  padding-bottom: .6em;
-  border-bottom: solid 2px black;
+    padding-bottom: .6em;
+    border-bottom: solid 2px black;
   }
 
   .content-user {
@@ -29,14 +29,14 @@ const ActivityStyled = styled.div`
   }
 
   .content-name {
-  display: inline;
-  margin: .6em .6em;
+    display: inline;
+    margin: .6em .6em;
   }
 
   .content-tag {
-  padding-top: 1.4em;
-  font-weight: bold;
-  color: ${theme.colors.primary};
+    padding-top: 1.4em;
+    font-weight: bold;
+    color: ${theme.colors.primary};
   }
 
   h3 {

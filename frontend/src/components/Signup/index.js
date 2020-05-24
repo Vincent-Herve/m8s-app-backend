@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ClipLoader from 'react-spinners/ClipLoader';
@@ -18,6 +18,10 @@ const Signup = ({
   messageError,
   setMessageError,
 }) => {
+  useEffect(() => {
+    document.title = 'S\'inscrire';
+  }, []);
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (username === '' || firstname === '' || lastname === '' || email === '' || password === '' || passwordConfirm === '') {

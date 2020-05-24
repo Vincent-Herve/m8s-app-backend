@@ -10,6 +10,7 @@ const VerifyAccount = ({
 }) => {
   const { token } = useParams();
   useEffect(() => {
+    document.title = 'M8S - Vérification';
     getVerifyAccount(token);
   }, []);
 

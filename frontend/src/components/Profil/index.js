@@ -62,10 +62,13 @@ const Profil = ({ userProfil, handleSignout, activities }) => {
             {viewActivities && <h4>Pas d'activité en cours</h4>}
             <div className="contain-card">
               {filteredActivities.map((activity) => {
-                const authorActivity = (activity.user_id === userProfil.id ? true : false);
+                const authorActivity = (activity.user_id === userProfil.id);
                 return (
                   <article className="article" key={activity.id}>
                     <h2 key={activity.title} className="content-title">{activity.title}</h2>
+                    {activity.tags.map((tag) => (
+                      <p key={tag.name} className="content-tag">{tag.name}</p>
+                    ))}
                     <p key={activity.description} className="content-description"><span className="bold">Description</span>: {activity.description}</p>
                     <p key={activity.free_place} className="content-text"><span className="bold">Membre(s) inscrit(s) / Places max</span>: {activity.users.length} / {activity.free_place}</p>
                     <p key={activity.location} className="content-text"><span className="bold">Lieu</span>: {activity.location}</p>
