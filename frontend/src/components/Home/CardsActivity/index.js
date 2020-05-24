@@ -17,7 +17,7 @@ const CardsActivity = ({ activity, isLoading }) => {
   return (
     <CardsActivityStyled>
       <h1>Voici nos activités les plus récentes</h1>
-      <div className="flex-card">
+      <div className="cards">
         {HomeActivities.map((HomeActivity) => (
           <Activity key={HomeActivity.id} {...HomeActivity} />
         ))}

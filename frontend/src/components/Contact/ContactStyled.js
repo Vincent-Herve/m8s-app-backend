@@ -91,9 +91,9 @@ const ContactStyled = styled.div`
   @media screen and (max-width: 450px) {
 
     .main {
-    border-radius: 5%;
-    padding: 1.5rem;
-    margin: 8rem 1rem 2rem 1rem;
+      border-radius: 5%;
+      padding: 1.5rem;
+      margin: 8rem 1rem 2rem 1rem;
     }
 
     h1 {

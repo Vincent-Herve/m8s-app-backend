@@ -7,7 +7,7 @@ import { IoIosPeople, IoMdCreate } from 'react-icons/io';
 import ActivityStyled from './ActivityStyled';
 
 const Icon = () => (
-  <IoIosPeople size="2em" className="author-icon" />
+  <IoIosPeople size="1.5em" className="author-icon" />
 );
 
 const IconEdit = () => (

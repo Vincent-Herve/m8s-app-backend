@@ -11,7 +11,7 @@ const ActivityStyled = styled.div`
   position: relative;
 
    &:hover {
-    transform: scale(1.1);
+    transform: scale(1.03);
    }
 
    .content-title {

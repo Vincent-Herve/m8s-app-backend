@@ -11,8 +11,14 @@ position: absolute;
 a {
   padding: 0 1em;
   color: black;
-  font-size: 1.4em;
-  font-family: ${theme.fonts.text2};
+  font-size: 1.3em;
+  font-family: ${theme.fonts.title};
+}
+
+@media screen and (max-width: 770px) {
+  a {
+    font-size:1.1em;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -23,18 +29,13 @@ a {
   a {
     margin: 0 10px;
     color: black;
-    font-size: 0.9em;
-    font-family: ${theme.fonts.text2};
+    font-size: 1em;
+    font-family: ${theme.fonts.title};
     padding: .7em;
   }
 }
 
-@media screen and (max-width: 720px) {
 
-  a {
-    font-size:1.1em;
-  }
-}
 `;
 
 export default FooterStyled;

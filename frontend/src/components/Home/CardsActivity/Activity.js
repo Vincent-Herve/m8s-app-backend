@@ -19,33 +19,27 @@ const Activity = (
     hour,
     // eslint-disable-next-line comma-dangle
   }
-) => (
-  <ActivityStyled>
-    <div className={users.length >= free_place ? 'content-closed' : 'content'}>
-      <h2 className="content-title">{title}</h2>
-      <h3>Membres inscrit a l'activité :</h3>
-      <div className="content-user">
-        {users.map((user) => (
-          <p key={user.username} className="content-name">{user.username}</p>
+) => {
+  const regex = /(\w+)-(\w+)-(\w+)/;
+  return (
+    <ActivityStyled>
+      <div className={users.length >= free_place ? 'content-closed' : 'content'}>
+        <h2 className="content-title">{title}</h2>
+        {tags.map((tag) => (
+          <p key={tag.name} className="content-tag">{tag.name}</p>
         ))}
+        <p key={description} className="content-description"><span className="bold">Description</span>: {description}</p>
+        <p key={free_place} className="content-text"><span className="bold">Membre(s) inscrit(s) / Places max</span>: {users.length} / {free_place}</p>
+        <p key={location} className="content-text"><span className="bold">Lieu</span>: {location}</p>
+        <p key={date} className="content-text"><span className="bold">Date</span>: {date.replace(regex, '$3-$2-$1')}</p>
+        <p key={hour} className="content-text"><span className="bold">Heure</span>: {hour}</p>
+        <div className="content-link">
+          <Link className="content-view-link" to={getUrlByActivityTitle(title)}>Voir l'activité</Link>
+        </div>
       </div>
-      {tags.map((tag) => (
-        <p key={tag.name} className="content-tag">{tag.name}</p>
-      ))}
-      <p key={description} className="content-description"><span className="underline">Description</span>: {description}</p>
-      <p key={free_place} className="content-text">{users.length}/{free_place}</p>
-      <p key={location} className="content-text"><span className="underline">Lieu</span>: {location}</p>
-      <p key={date} className="content-text"><span className="underline">Date</span>: {date}</p>
-      <p key={hour} className="content-text"><span className="underline">Heure</span>: {hour}</p>
-      <div className="content-link">
-        <Link className="content-view-link" to={getUrlByActivityTitle(title)}>Voir l'activité</Link>
-      </div>
-      <Link className="register" to="/signin">
-        Se connecter pour y participer
-      </Link>
-    </div>
-  </ActivityStyled>
-);
+    </ActivityStyled>
+  );
+};
 
 Activity.propTypes = {
   id: PropTypes.number.isRequired,

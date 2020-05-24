@@ -21,21 +21,21 @@ const HomeStyled = styled.div`
     color: white;
     font-weight: bold;
 
-      h1 {
-        font-size: 8em;
-        color: white;
-      }
+    h1 {
+      font-size: 8em;
+      color: white;
+    }
 
-      h2 {
-          font-size: 2.6rem;
-          margin-bottom: 1.2rem;
-          font-weight: bold;
-        }
+    h2 {
+      font-size: 2.6rem;
+      margin-bottom: 1.2rem;
+      font-weight: bold;
+    }
 
-        p {
-          font-size: 1.6em;
-          margin: 0;
-        }
+    p {
+      font-size: 1.6em;
+      margin: 0;
+    }
   }
 
   .subtitle {
@@ -52,6 +52,7 @@ const HomeStyled = styled.div`
     border: 2px solid black;
     border-radius: 12px;
     align-self: center;
+
       &:hover {
         background-color: #DE8400;
         text-decoration:none;
@@ -92,18 +93,18 @@ const HomeStyled = styled.div`
   align-items: center;
 
   .contain {
-      text-align: center;
-      height: 60vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      color: white;
-  }
-
-  h1 {
+    text-align: center;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     color: white;
-    font-size: 4.5em;
-    font-family: 'Roboto', sans-serif;
+    padding: 0 .4em;
+
+    h1 {
+      color: white;
+      font-size: 6em;
+    }
   }
 
   .subtitle {
@@ -115,16 +116,17 @@ const HomeStyled = styled.div`
   }
 
   p {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.2rem;
-    margin-bottom: 1.7rem;
+    padding: .8em 0;
   }
 
   .lien-activity {
     font-size: 1.2rem;
     border: 2px solid black;
     border-radius: 12px;
-    
+  }
+
+  .div-link {
+    margin-top: 2em;
   }
 }
 

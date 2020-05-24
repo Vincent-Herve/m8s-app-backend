@@ -64,6 +64,7 @@ const ProfilStyled = styled.main`
 
   .contain-card {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
   }
 
@@ -71,14 +72,13 @@ const ProfilStyled = styled.main`
     padding: 2.2rem 1em;
     margin: 2rem;
     border-radius: 5px;
-    
     box-shadow: 1px 0px 7px -2px #000000;
-    background-color: #f4cba8;
+    background-color: #f1f1f1;
     transition: .3s ease-in-out;
     position: relative;
 
       &:hover {
-        transform: scale(1.1);
+        transform: scale(1.03);
       }
 
   .content-title {
@@ -111,6 +111,18 @@ const ProfilStyled = styled.main`
 
   .underline {
     text-decoration: underline;
+  }
+}
+
+.bold {
+    font-weight: bold;
+  }
+
+@media screen and (max-width: 770px) {
+  .contain-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 

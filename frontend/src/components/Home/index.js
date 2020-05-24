@@ -24,15 +24,17 @@ const Home = ({ userProfil, isLogged, isLoading }) => {
               <p>Vous recherchez une activité sportive près de chez vous ?</p>
               <p>De l'énergie à revendre, un esprit d'équipe, vous êtes au bon endroit !</p>
             </section>
-            <Link className="square_btn" to="/activity">N'attendez plus !</Link>
+            <div className="div-link">
+              <Link className="square_btn" to="/activity">N'attendez plus !</Link>
+            </div>
           </>
         )}
         {isLogged && (
           <>
-            <article>
+            <section>
               <h2>Welcome {userProfil.username}</h2>
               <p>C'est parti pour un peu de sport !!</p>
-            </article>
+            </section>
             <Link className="square_btn" to="/create">Crée ta propre activité !</Link>
           </>
         )}

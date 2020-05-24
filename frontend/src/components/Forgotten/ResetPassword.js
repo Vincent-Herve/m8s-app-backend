@@ -21,6 +21,10 @@ const ResetPassword = ({
     getResetPassword(token);
   }, []);
 
+  useEffect(() => {
+    document.title = 'Réinitialisation du mot de passe';
+  }, []);
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (password !== '' && passwordConfirm !== '' && password === passwordConfirm) {
@@ -45,6 +49,7 @@ const ResetPassword = ({
   if (reset) {
     return (
       <ResetPasswordStyled>
+        <h1>Réinitialiser votre mot de passe </h1>
         <form className="login-form-element" onSubmit={handleSubmit}>
           <Field
             name="password"
@@ -56,7 +61,7 @@ const ResetPassword = ({
           <Field
             name="passwordConfirm"
             type="password"
-            placeholder="Mot de passe"
+            placeholder="Confirmation mot de passe"
             onChange={changeField}
             value={passwordConfirm}
           />

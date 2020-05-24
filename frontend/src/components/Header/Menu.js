@@ -15,7 +15,6 @@ const Menu = ({ isLogged, handleSignout }) => {
         <Nav className="mr-auto">
           <NavLink exact to="/">Accueil</NavLink>
           <NavLink exact to="/activity">Activités</NavLink>
-          <NavLink exact to="/activity/search">Rechercher une activité</NavLink>
           {isLogged && (
             <>
               <NavLink exact to="/profil">Mon profil</NavLink>

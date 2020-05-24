@@ -21,7 +21,6 @@ const AppStyled = styled.div`
   p {
     font-size: ${theme.size.text};
   }
-  
 
   .pageNotFind {
     font-size: 2em;

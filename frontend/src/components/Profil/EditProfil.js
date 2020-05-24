@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import EditProfilStyled from './EditProfilStyled';
 import Field from './Field';
@@ -13,6 +13,9 @@ const EditProfil = ({
   changeField,
   isLoading,
 }) => {
+  useEffect(() => {
+    document.title = 'Modifier mon profil';
+  }, []);
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleEditProfil();

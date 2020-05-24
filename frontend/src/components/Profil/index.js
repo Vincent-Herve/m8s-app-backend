@@ -1,16 +1,19 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-restricted-syntax */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { IoIosPeople } from 'react-icons/io';
 import ProfilStyled from './ProfilStyled';
 
 const Icon = () => (
-  <IoIosPeople className="author-icon" />
+  <IoIosPeople size="1.5em" className="author-icon" />
 );
 
 const Profil = ({ userProfil, handleSignout, activities }) => {
+  useEffect(() => {
+    document.title = 'Mon profil';
+  }, []);
   const Signout = () => {
     handleSignout();
   };
@@ -31,6 +34,8 @@ const Profil = ({ userProfil, handleSignout, activities }) => {
   const generateClickHandler = (newTab) => () => {
     setTab(newTab);
   };
+
+  const regex = /(\w+)-(\w+)-(\w+)/;
 
   return (
     <ProfilStyled>
@@ -61,11 +66,11 @@ const Profil = ({ userProfil, handleSignout, activities }) => {
                 return (
                   <article className="article" key={activity.id}>
                     <h2 key={activity.title} className="content-title">{activity.title}</h2>
-                    <p key={activity.description} className="content-description">{activity.description}</p>
-                    <p key={activity.free_place} className="content-text">{activity.users.length}/{activity.free_place}</p>
-                    <p key={activity.location} className="content-text">{activity.location}</p>
-                    <p key={activity.date} className="content-text">{activity.date}</p>
-                    <p key={activity.hour} className="content-text">{activity.hour}</p>
+                    <p key={activity.description} className="content-description"><span className="bold">Description</span>: {activity.description}</p>
+                    <p key={activity.free_place} className="content-text"><span className="bold">Membre(s) inscrit(s) / Places max</span>: {activity.users.length} / {activity.free_place}</p>
+                    <p key={activity.location} className="content-text"><span className="bold">Lieu</span>: {activity.location}</p>
+                    <p key={activity.date} className="content-text"><span className="bold">Date</span>: {activity.date.replace(regex, '$3-$2-$1')}</p>
+                    <p key={activity.hour} className="content-text"><span className="bold">Heure</span>: {activity.hour}</p>
                     {authorActivity && (
                       <>
                         <Icon />

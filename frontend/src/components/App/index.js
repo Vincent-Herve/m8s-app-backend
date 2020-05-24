@@ -72,10 +72,9 @@ const App = (
       <Header />
       {redirection && <Redirect to="/" />}
       <Switch>
-        <Route path="/" exact render={() => <><Home isLoading={isLoading} /><CardsActivity isLoading={isLoading} /></>} />
+        <Route path="/" exact render={() => <><Home isLoading={isLoading} />{!isLogged && <CardsActivity isLoading={isLoading} />}</>} />
         {redirectionCreate && <Redirect to="/activity" />}
         <Route path="/activity" exact component={Activities} />
-        <Route path="/activity/search" exact component={SearchActivity} />
         {!isLoading && <Route path="/activity/:slug" exact component={DetailActivity} />}
         <Route path="/editactivity" exact component={EditActivity} />
         <Route path="/contact" exact component={Contact} />

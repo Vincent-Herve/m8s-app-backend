@@ -24,10 +24,6 @@ const ResetPasswordStyled = styled.div`
     }
   }
 
-  h1 {
-    font-family: ${theme.fonts.text2};
-  }
-
   .links {
       text-decoration: none;
       font-size: 1.5rem;
@@ -93,10 +89,10 @@ const ResetPasswordStyled = styled.div`
     transition: .6s;
   }
 
-.login-form-button:hover {
-  background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
-  background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
-}
+  .login-form-button:hover {
+    background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+    background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+  }
 `;
 
 export default ResetPasswordStyled;

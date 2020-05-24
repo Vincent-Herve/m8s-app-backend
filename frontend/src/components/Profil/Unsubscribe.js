@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import UnsubscribeStyled from './UnsubscribeStyled';
 
 const Unsubscribe = ({ handleUnsubscribe }) => {
+  useEffect(() => {
+    document.title = 'Me désinscrire';
+  }, []);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 

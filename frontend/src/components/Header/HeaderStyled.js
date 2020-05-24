@@ -52,6 +52,7 @@ const HeaderStyled = styled.header`
 
     .burger {
       margin-right: .5em;
+      background-color: burlywood;
     }
 
     a {

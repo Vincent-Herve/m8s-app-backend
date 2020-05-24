@@ -4,13 +4,16 @@ import { connect } from 'react-redux';
 import Activities from 'src/components/Activities';
 
 // Action Creators
-import { registerActivity, leftActivity, fetchActivities } from 'src/actions/activities';
+import { registerActivity, leftActivity, fetchActivities, changeValue } from 'src/actions/activities';
+import { changeTag } from 'src/actions/tag';
 
 const mapStateToProps = (state, ownProps) => ({
   activities: state.activities.list,
   userProfilId: state.user.userProfil.id,
   isLogged: state.user.isLogged,
   tags: state.tag.list,
+  location: state.activities.location,
+  tagName: state.tag.tagId,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -22,6 +25,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   fetchActivities: () => {
     dispatch(fetchActivities());
+  },
+  changeField: (value, name) => {
+    dispatch(changeValue(value, name));
+  },
+  changeTag: (value) => {
+    dispatch(changeTag(value));
   },
 });
 // Container
