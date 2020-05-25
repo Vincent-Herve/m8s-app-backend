@@ -24,7 +24,7 @@ router.delete('/api/activity/:activity_id/user/:user_id', ActivityController.del
 
 // actions de User
 router.get('/auth/facebook', passportFacebook.authenticate('facebook'));
-router.get('/auth/facebook/callback', passportFacebook.authenticate('facebook', { successRedirect: 'http://localhost:8080/', failureRedirect: 'http://localhost:8080/signin' }));
+router.get('/auth/facebook/callback', passportFacebook.authenticate('facebook', { successRedirect: '/', failureRedirect: '/signin' }));
 router.post('/api/auth/signup', UserController.signup);
 router.post('/api/auth/signin', passportLocal.authenticate('local'), UserController.signin);
 router.post('/api/auth/isLogged',  UserController.isLogged);

@@ -7,7 +7,7 @@ const { User } = require('../models/relations');
 passport.use(new FacebookStrategy({
     clientID: process.env.KEY_CLIENT_ID_FACEBOOK,
     clientSecret: process.env.KEY_CLIENT_SECRET_FACEBOOK,
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    callbackURL: "/auth/facebook/callback"
   },
    async function(accessToken, refreshToken, profile, done) {
         let user = await User.findOne({ where: {username: profile.displayName} });

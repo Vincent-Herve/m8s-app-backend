@@ -1,9 +1,22 @@
+// const fs = require('fs');
+// const https = require('https');
+
+/*
+const options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+};
+*/
+
 // Dotenv
 const dotenv = require('dotenv');
 dotenv.config();
 
 // Cors
 const cors = require('cors');
+
+// Helmet
+const helmet = require('helmet');
 
 const corsOption = {
   origin: ['http://localhost:3000', 'http://localhost:8080'],
@@ -35,18 +48,21 @@ const session = require('express-session');
 const express = require('express');
 const app = express();
 
-// Ejs
-app.set('view engine', 'ejs');
-
+app.use(helmet());
 app.use(express.static('public'));
-
 app.use(cors(corsOption));
 
+const PostgreSqlStore = require('connect-pg-simple')(session);
+var expiryDate = new Date( Date.now() + 60 * 60 * 1000 );
+
 app.use(session({
+  store: new PostgreSqlStore({
+    conString: process.env.PG_URL,
+    ttl: 3600
+  }),
   saveUninitialized: true,
-  resave: false,
-  secret: "keyboard cat",
-  cookie: {}
+  resave: true,
+  secret: process.env.SECRET_SESSION
 }));
 
 app.use(bodyParser.json());
