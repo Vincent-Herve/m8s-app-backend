@@ -55,15 +55,19 @@ const Signin = ({
           </button>
         </form>
         <p className="error">{messageError}</p>
-        <ClipLoader
-          css="loading"
-          size={100}
-          color="orange"
-          loading={isLoading}
-        />
-        <button type="button" className="loginBtn loginBtn--facebook">
-          <a href="http://localhost:3000/auth/facebook">Login Facebook</a>
-        </button>
+        <div>
+          <ClipLoader
+            css="loading"
+            size={100}
+            color="orange"
+            loading={isLoading}
+          />
+        </div>
+        <div>
+          <button type="button" className="loginBtn loginBtn--facebook">
+            <a href="http://localhost:3000/auth/facebook">Login Facebook</a>
+          </button>
+        </div>
         <div className="contain-links">
           <Link className="links" to="/forgotten">Mot de passe oublié</Link>
         </div>

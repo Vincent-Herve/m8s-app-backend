@@ -14,6 +14,11 @@ const ActivityStyled = styled.div`
   transform: scale(1.03);
   }
 
+  p {
+    margin-bottom: 1rem;
+  }
+
+
   .content-closed {
     opacity: 0.4;
   }

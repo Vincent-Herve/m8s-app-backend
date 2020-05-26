@@ -193,7 +193,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           setTimeout(() => {
             store.dispatch(saveTags(tags.data));
             store.dispatch(saveActivities(activities.data));
-          }, 800);
+          }, 500);
         }));
 
       next(action);
