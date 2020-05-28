@@ -21,7 +21,7 @@ router.get('/api/tag', TagController.getAllTags);
 router.post('/api/auth/isLogged',  UserController.isLogged);
 
 router.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // actions de Activity
