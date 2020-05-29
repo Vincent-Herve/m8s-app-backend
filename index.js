@@ -1,3 +1,4 @@
+/*
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
@@ -6,7 +7,7 @@ const options = {
   key: fs.readFileSync('sslcert/server.key'),
   cert: fs.readFileSync('sslcert/server.cert')
 };
-
+*/
 
 // Dotenv
 const dotenv = require('dotenv');
@@ -81,8 +82,7 @@ const PORT = process.env.PORT || 8443;
 // Utilisation du router
 app.use(router);
 
-http.createServer(app).listen(8080);
-https.createServer(options, app).listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Listening on ${PORT}`);
 });
 
