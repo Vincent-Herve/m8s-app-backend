@@ -1,12 +1,12 @@
-/*
 const fs = require('fs');
+const http = require('http');
 const https = require('https');
 
 const options = {
-  key: fs.readFileSync('sslcert/key.pem'),
-  cert: fs.readFileSync('sslcert/cert.pem')
+  key: fs.readFileSync('sslcert/server.key'),
+  cert: fs.readFileSync('sslcert/server.cert')
 };
-*/
+
 
 // Dotenv
 const dotenv = require('dotenv');
@@ -77,19 +77,14 @@ app.use(passport.session());
 // Router
 const router = require('./app/router');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 443;
 
 // Utilisation du router
 app.use(router);
 
-/*
 https.createServer(options, app).listen(PORT, () => {
   console.log(`Listening on ${PORT}`);
 });
-*/
 
-app.listen(PORT, () => {
-  console.log(`Listening on ${PORT}`);
-});
 
 module.exports = app;
