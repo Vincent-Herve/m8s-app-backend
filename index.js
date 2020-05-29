@@ -53,7 +53,6 @@ app.use(express.static('dist'));
 app.use(cors(corsOption));
 
 const PostgreSqlStore = require('connect-pg-simple')(session);
-var expiryDate = new Date( Date.now() + 60 * 60 * 1000 );
 
 app.use(session({
   store: new PostgreSqlStore({
@@ -77,11 +76,12 @@ app.use(passport.session());
 // Router
 const router = require('./app/router');
 
-const PORT = process.env.PORT || 443;
+const PORT = process.env.PORT || 8443;
 
 // Utilisation du router
 app.use(router);
 
+http.createServer(app).listen(8080);
 https.createServer(options, app).listen(PORT, () => {
   console.log(`Listening on ${PORT}`);
 });
