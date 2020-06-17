@@ -90,8 +90,8 @@ CREATE TABLE "activities_have_users" (
 
 -- 3 activités
 
-INSERT INTO "activity"("title", "description", "free_place", "location", "date", "hour", "user_id") VALUES ('Futsal tonight', 'Je cherche du monde pour organiser un futsal', 10, 'Bayonne', '2020-05-30', '21:00:00', 4), ('Tennis niveau débutant', 'Cherche un joueur débutant pour un tennis', 2, 'Marseille', '2020-05-30', '14:00:00', 4),
-('Paintball de la mort qui tue', 'Cherche du monde pour un paintball 5vs5', 10, 'Toulouse', '2020-05-30', '16:00:00', 4);
+INSERT INTO "activity"("title", "description", "free_place", "location", "date", "hour", "user_id") VALUES ('Futsal tonight', 'Je cherche du monde pour organiser un futsal', 10, 'Bayonne', '2020-07-30', '21:00:00', 4), ('Tennis niveau débutant', 'Cherche un joueur débutant pour un tennis', 2, 'Marseille', '2020-07-30', '14:00:00', 4),
+('Paintball de la mort qui tue', 'Cherche du monde pour un paintball 5vs5', 10, 'Toulouse', '2020-07-30', '16:00:00', 4);
 
 -- 4 utilisateurs
 
