@@ -3,7 +3,7 @@ const { Tag, Activity, User } = require('../models/relations');
 
 // TagController
 const TagController = {
-    // route : GET /tag
+    // route : GET /api/tag
     getAllTags: async (request, response) => {
         try {
             let tags = await Tag.findAll({
@@ -25,7 +25,7 @@ const TagController = {
             response.status(500).json(error);
         }
     },
-    // route : POST /activity/:id/tag
+    // route : POST /api/activity/:id/tag
     associateTagToActivity: async (request, response) => {
         try {
             const activityId = request.params.id;
