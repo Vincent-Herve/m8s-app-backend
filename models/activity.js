@@ -2,8 +2,7 @@
 
 // Import
 const Sequelize = require('sequelize');
-const { DataTypes } = require("sequelize");
-const db = require('../db');
+const db = require('./db');
 
 // Sequelize <> activity
 class Activity extends Sequelize.Model {

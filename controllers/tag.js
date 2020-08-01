@@ -3,8 +3,8 @@ const { Tag, Activity, User } = require('../models/relations');
 
 // TagController
 const TagController = {
-    // route : GET /api/tag
-    getAllTags: async (request, response) => {
+    // route : GET /tag
+    getAllTags: async (req, res) => {
         try {
             let tags = await Tag.findAll({
                 // Tag > user, Tag > Activity
@@ -19,17 +19,17 @@ const TagController = {
                     ['name']
                 ],
             });
-            response.json(tags);
+
+            res.json(tags);
         } catch (error) {
-            console.error(error);
-            response.status(500).json(error);
+            res.status(500).json(error);
         }
     },
-    // route : POST /api/activity/:id/tag
-    associateTagToActivity: async (request, response) => {
+    // route : POST /tag/:id/activity
+    associateTagToActivity: async (req, res) => {
         try {
-            const activityId = request.params.id;
-            const tagId = request.body.tagId;
+            const activityId = req.params.id;
+            const tagId = req.body.tagId;
 
             const bodyErrors = [];
             if (!tagId) {
@@ -38,59 +38,54 @@ const TagController = {
 
             if (bodyErrors.length) {
                 // si la requête ne contient pas toutes les infos demandées
-                response.status(500).json(bodyErrors);
+                res.status(500).json(bodyErrors);
             } else {
-
                 let activity = await Activity.findByPk(activityId, {
                     include: ['tags']
                 });
 
                 if (!activity) {
-                    response.status(404).json(`Cant find activity with the id ${activityId}`);
+                    res.status(404).json(`Can't find activity with the id ${activityId}`);
                 } else {
                     const tag = await Tag.findByPk(tagId);
 
                     if (!tag) {
-                        response.status(404).json(`Cant find a tag with the id ${tagId}`);
+                        res.status(404).json(`Can't find a tag with the id ${tagId}`);
                     } else {
-
                         await activity.addTag(tag);
-
                         activity.tags.push(tag);
 
-                        response.json('Tag associé avec succès');
+                        res.json('Tag associé avec succès');
                     }
                 }
             }
         } catch (error) {
-            response.status(500).json(error);
+            res.status(500).json(error);
         }
     },
-    // route : DELETE /activity/:activity_id/tag/:tag_id
-    deleteTagFromActivity: async (request, response) => {
+    // route : DELETE /tag/:tag_id/activity/:activity_id
+    deleteTagFromActivity: async (req, res) => {
         try {
-            const activityId = request.params.activity_id;
-            const tagId = request.params.tag_id;
+            const activityId = req.params.activity_id;
+            const tagId = req.params.tag_id;
 
             const activity = await Activity.findByPk(activityId);
 
             if (!activity) {
-                response.status(404).json(`Cant find activity with the id ${activityId}`);
-            } else {
-                
+                res.status(404).json(`Can't find activity with the id ${activityId}`);
+            } else {        
                 const tag = await Tag.findByPk(tagId);
 
                 if (!tag) {
-                    response.status(404).json(`Cant find a tag with the id ${tagId}`);
+                    res.status(404).json(`Can't find a tag with the id ${tagId}`);
                 } else {
-
                     await activity.removeTag(tag);
 
-                    response.json('Tag supprimé avec succès');
+                    res.json('Tag supprimé avec succès');
                 }
             }
         } catch (error) {
-            response.status(500).json(error);
+            res.status(500).json(error);
         }
     }
 };

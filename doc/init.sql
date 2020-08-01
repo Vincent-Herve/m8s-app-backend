@@ -90,8 +90,8 @@ CREATE TABLE "activities_have_users" (
 
 -- 3 activités
 
-INSERT INTO "activity"("title", "description", "free_place", "location", "date", "hour", "user_id") VALUES ('Futsal tonight', 'Je cherche du monde pour organiser un futsal', 10, 'Bayonne', '2020-07-30', '21:00:00', 4), ('Tennis niveau débutant', 'Cherche un joueur débutant pour un tennis', 2, 'Marseille', '2020-07-30', '14:00:00', 4),
-('Paintball de la mort qui tue', 'Cherche du monde pour un paintball 5vs5', 10, 'Toulouse', '2020-07-30', '16:00:00', 4);
+INSERT INTO "activity"("title", "description", "free_place", "location", "date", "hour", "user_id") VALUES ('Futsal tonight', 'Je cherche du monde pour organiser un futsal', 10, 'Bayonne', '2020-09-30', '21:00:00', 4), ('Tennis niveau débutant', 'Cherche un joueur débutant pour un tennis', 2, 'Marseille', '2020-09-30', '14:00:00', 4),
+('Paintball de la mort qui tue', 'Cherche du monde pour un paintball 5vs5', 10, 'Toulouse', '2020-09-30', '16:00:00', 4);
 
 -- 4 utilisateurs
 
@@ -106,7 +106,7 @@ INSERT INTO "user"("username", "firstname", "lastname", "avatar_url", "email", "
 INSERT INTO "tag"("name") VALUES (''), ('adrénaline'), ('accrobranche'), ('aérobic'), ('aquagym'), ('athlétisme'), ('babyfoot'), ('badminton'),
 ('baseball'), ('basket-ball'), ('billard'), ('bmx'), ('bodyboard'), ('bowling'), ('boxe'), ('canoë'), ('canyoning'), ('capoeira'), ('cirque'),
 ('course à pied'), (E'course d\'orientation'), ('crossfit'), ('cyclisme'), ('danse'), ('endurance'), ('équitation'), ('escalade'), ('escrime'), ('esport'),
-('floorball'), ('football'), ('football américain'), ('footing'), ('futsal'), ('glisse'), ('golf'), ('gymnastique'), ('hanball'), ('hockey'), ('kayak'), ('kitesurfing'),
+('floorball'), ('football'), ('football américain'), ('footing'), ('futsal'), ('glisse'), ('golf'), ('gymnastique'), ('hanball'), ('handisport'), ('hockey'), ('kayak'), ('kitesurfing'),
 ('karting'), ('luge'), ('lutte'), ('moto balade'), ('moto cross'), ('musculation'), ('marathon'), ('natation'), ('paddle'), ('padel'), ('paintball'), ('pala'), ('parachutisme'),
 ('parapente'), ('parkour'), ('patinage'), ('pêche'), ('pelote basque'), ('pétanque'), ('pilates'), ('ping-pong'), ('planche à voile'), ('plongée'), ('polo'), ('quad'), ('rafting'),
 ('rallye'), ('roller'), ('rugby'), ('skateboard'), ('ski'), ('sport de combat'), ('squash'), ('step'), ('surf'), ('tennis'), ('tir'), (E'tir à l\'arc'), ('trotinette'),
