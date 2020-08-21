@@ -39,6 +39,12 @@ const UserController = {
                     id: userId
                 }
             });
+
+            if (!user) {
+                // pas d'activité pour cet id
+                res.status(404).json(`Can't find user with this id : ${userId}`);
+            }
+            
             delete user.dataValues.id;
             delete user.dataValues.password;
             res.status(200).json({
@@ -76,7 +82,7 @@ const UserController = {
                     })
                 } else {
                     res.json({
-                    status: 'success'
+                        status: 'success'
                     })
                 }
             });
@@ -189,7 +195,7 @@ const UserController = {
                 to: user.email,
                 subject: 'Votre mot de passe a été modifié',
                 text: 'Bonjour,\n\n' +
-                'Nous vous confirmons que le mot de passe du compte M8S' + user.email + ' a bien été modifié.\n'
+                'Nous vous confirmons que le mot de passe du compte M8S ' + user.email + ' a bien été modifié.\n'
             };
             
             // Envoie du mail

@@ -16,10 +16,6 @@ const ActivityController = {
                 },
                 {
                     association: 'tags'
-                },
-                {
-                    association: 'author',
-                    attributes: { exclude: ['password'] }
                 }],
                 order: [
                      ['created_at', 'DESC']
@@ -154,7 +150,7 @@ const ActivityController = {
                 await activity.removeTag(currentTag);
                 await activity.addTag(tagId);
 
-                res.json(activity);
+                res.json('OK');
             }
         } catch (error) {
             res.status(500).json(error);
